@@ -1,0 +1,38 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+  <link href="main.css" rel="stylesheet" type='text/css'>
+</head>
+
+<body>
+  <div id="canvas-container">
+    <canvas id="canvas-real" class="canvas" width='1280px' height='720px'></canvas>
+    <canvas id="canvas-draft" class="canvas" width='1280px' height='720px'></canvas>
+  </div>
+  <div class="buttons">
+    <span class="btn btn-primary fa fa-square" id="drawing-rectangle">Drawing Rectangle</span>
+    <span class="btn btn-info fa fa-paint-brush" id="drawing-line">Drawing Line</span>
+  </div>
+
+  <script type='text/javascript' src="canvas-common.js"></script>
+  <script type='text/javascript' src="drawing-line.js"></script>
+  <script type='text/javascript' src="drawing-rectangle.js"></script>
+  <script type='text/javascript'>
+    $('#drawing-rectangle').click(() => {
+      currentFunction = new DrawingRectangle(contextReal, contextDraft);
+    });
+    $('#drawing-line').click(() => {
+      currentFunction = new DrawingLine(contextReal, contextDraft);
+    });
+    currentFunction = new DrawingRectangle(contextReal, contextDraft);    
+  </script>
+</body>
+
+</html>
