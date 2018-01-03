@@ -46,7 +46,9 @@ class DrawingEllipse extends PaintFunction {
         else radiusY = (this.origY - y) / 2;
 
         ctx.beginPath();
-        ctx.ellipse(xcenter, ycenter, radiusX, radiusY, 0, 0, 2 * Math.PI)
+        ctx.ellipse(xcenter, ycenter, radiusX, radiusY, 0, 0, 2 * Math.PI);
+        ctx.fillStyle = '#8ED6FF';
+        ctx.fill();
         ctx.stroke();
     }
 }
