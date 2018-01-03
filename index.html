@@ -19,19 +19,34 @@
   <div class="buttons">
     <span class="btn btn-primary fa fa-square" id="drawing-rectangle">Drawing Rectangle</span>
     <span class="btn btn-info fa fa-paint-brush" id="drawing-line">Drawing Line</span>
+    <span class="btn btn-info fa fa-paint-brush" id="drawing-straightLine">Drawing Straight Line</span>
+    <span class="btn btn-info fa fa-paint-brush" id="eraser">Eraser</span>
+    <span class="btn btn-info fa fa-paint-brush" id="drawing-ellipse">Drawing Ellipse</span>
   </div>
 
-  <script type='text/javascript' src="canvas-common.js"></script>
-  <script type='text/javascript' src="drawing-line.js"></script>
-  <script type='text/javascript' src="drawing-rectangle.js"></script>
+  <script type='text/javascript' src="function/canvas-common.js"></script>
+  <script type='text/javascript' src="function/drawing-line.js"></script>
+  <script type='text/javascript' src="function/drawing-rectangle.js"></script>
+  <script type='text/javascript' src="function/drawing-straightLine.js"></script>
+  <script type='text/javascript' src="function/eraser.js"></script>
+  <script type='text/javascript' src="function/drawing-ellipse.js"></script>
   <script type='text/javascript'>
     $('#drawing-rectangle').click(() => {
       currentFunction = new DrawingRectangle(contextReal, contextDraft);
     });
     $('#drawing-line').click(() => {
       currentFunction = new DrawingLine(contextReal, contextDraft);
+    }); 
+    $('#drawing-straightLine').click(() => {
+      currentFunction = new DrawingStraightLine(contextReal, contextDraft);
+    });  
+    $('#eraser').click(() => {
+      currentFunction = new Eraser(contextReal, contextDraft);
     });
-    currentFunction = new DrawingRectangle(contextReal, contextDraft);    
+    $('#drawing-ellipse').click(() => {
+      currentFunction = new DrawingEllipse(contextReal, contextDraft);
+    });
+
   </script>
 </body>
 
