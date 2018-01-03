@@ -1,3 +1,6 @@
+body{
+    background-color: aqua;
+}
 .canvas{
     border:1px black dotted;
     position:absolute;
