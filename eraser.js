@@ -1,11 +1,11 @@
-class DrawingLine extends PaintFunction {
+class Eraser extends PaintFunction {
     constructor(contextReal) {
         super();
         this.context = contextReal;
     }
 
     onMouseDown(coord, event) {
-        this.context.strokeStyle = rgbaColor;
+        this.context.strokeStyle = "rgba(255,0,0,0.5)";
         this.context.lineJoin = this.context.lineCap = "round";
         this.context.lineWidth = slider.value;
         this.context.beginPath();
@@ -14,7 +14,9 @@ class DrawingLine extends PaintFunction {
     }
 
     onDragging(coord, event) {
+        this.context.globalCompositeOperation = "destination-out";
         this.draw(coord[0], coord[1]);
+        this.context.globalCompositeOperation = "source-over";
     }
 
     onMouseMove() { }
