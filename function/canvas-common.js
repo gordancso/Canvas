@@ -29,7 +29,7 @@ $('#canvas-draft').mouseup(function (e) {
 });
 
 $('#canvas-draft').mouseleave(function (e) {
-    dragging = false;
+    //dragging = false;
     let mouseX = e.pageX - this.offsetLeft;
     let mouseY = e.pageY - this.offsetTop;
     currentFunction.onMouseLeave([mouseX, mouseY], e);
@@ -41,6 +41,12 @@ $('#canvas-draft').mouseenter(function (e) {
     currentFunction.onMouseEnter([mouseX, mouseY], e);
 });
 
+$('#canvas-draft').dblclick(function (e) {
+    let mouseX = e.pageX - this.offsetLeft;
+    let mouseY = e.pageY - this.offsetTop;
+    currentFunction.onDobuleClick([mouseX, mouseY], e);
+});
+
 class PaintFunction {
     constructor() { }
     onMouseDown() { }
@@ -49,4 +55,5 @@ class PaintFunction {
     onMouseUp() { }
     onMouseLeave() { }
     onMouseEnter() { }
+    onDobuleClick() { }
 }

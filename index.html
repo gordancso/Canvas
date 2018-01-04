@@ -23,6 +23,7 @@
     <span class="btn btn-info fa fa-paint-brush" id="eraser">Eraser</span>
     <span class="btn btn-info fa fa-paint-brush" id="drawing-ellipse">Drawing Ellipse</span>
     <span class="btn btn-info fa fa-paint-brush" id="drawing-polygon">Drawing Polygon</span>
+    <span class="btn btn-info fa fa-paint-brush" id="pan">Pan</span>
   </div>
 
   <script type='text/javascript' src="function/canvas-common.js"></script>
@@ -32,7 +33,10 @@
   <script type='text/javascript' src="function/eraser.js"></script>
   <script type='text/javascript' src="function/drawing-ellipse.js"></script>
   <script type='text/javascript' src="function/drawing-polygon.js"></script>
+  <script type='text/javascript' src="function/pan.js"></script>
   <script type='text/javascript'>
+    currentFunction = new DrawingStraightLine(contextReal, contextDraft);
+    
     $('#drawing-rectangle').click(() => {
       currentFunction = new DrawingRectangle(contextReal, contextDraft);
     });
@@ -50,6 +54,9 @@
     });
     $('#drawing-polygon').click(() => {
       currentFunction = new DrawingPolygon(contextReal, contextDraft);
+    });
+    $('#pan').click(() => {
+      currentFunction = new Pan(contextReal, contextDraft);
     });
 
   </script>
