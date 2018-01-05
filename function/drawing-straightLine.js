@@ -21,32 +21,12 @@ class DrawingStraightLine extends PaintFunction {
         this.clickCP['endpoint'] = this.selectCP(coord, this.endpoint, 20);
         this.clickLine = this.selectLine(coord, this.startpoint, this.endpoint, 20);
         this.previouspoint = coord.slice(0);
-        this.count++;
+
+        if (this.clickCP['startpoint'] || this.clickCP['endpoint'])
+            this.count++;
     }
 
     onDragging(coord, event) {
-        this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
-
-        if (this.clickCP['startpoint']) {
-            this.startpoint = coord.slice(0);
-        }
-        else if (this.clickCP['endpoint']) {
-            this.endpoint = coord.slice(0);
-        }
-        else if (this.clickLine) {
-            this.startpoint[0] = this.startpoint[0] + (coord[0] - this.previouspoint[0]);
-            this.startpoint[1] = this.startpoint[1] + (coord[1] - this.previouspoint[1]);
-            this.endpoint[0] = this.endpoint[0] + (coord[0] - this.previouspoint[0]);
-            this.endpoint[1] = this.endpoint[1] + (coord[1] - this.previouspoint[1]);
-        }
-
-        this.previouspoint = coord.slice(0);
-        this.createCP(this.startpoint);
-        this.createCP(this.endpoint);
-        this.drawLine(this.contextDraft, this.startpoint, this.endpoint);
-    }
-
-    onMouseMove(coord, event) {
         if (this.count % 2 == 1) {
             this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
 
@@ -71,6 +51,30 @@ class DrawingStraightLine extends PaintFunction {
 
     }
 
+    onMouseMove(coord, event) {
+        if (this.count % 2 == 1) {
+            this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
+
+            if (this.clickCP['startpoint']) {
+                this.startpoint = coord.slice(0);
+            }
+            else if (this.clickCP['endpoint']) {
+                this.endpoint = coord.slice(0);
+            }
+            else if (this.clickLine) {
+                this.startpoint[0] = this.startpoint[0] + (coord[0] - this.previouspoint[0]);
+                this.startpoint[1] = this.startpoint[1] + (coord[1] - this.previouspoint[1]);
+                this.endpoint[0] = this.endpoint[0] + (coord[0] - this.previouspoint[0]);
+                this.endpoint[1] = this.endpoint[1] + (coord[1] - this.previouspoint[1]);
+            }
+
+            this.previouspoint = coord.slice(0);
+            this.createCP(this.startpoint);
+            this.createCP(this.endpoint);
+            this.drawLine(this.contextDraft, this.startpoint, this.endpoint);
+        }
+    }
+
     onMouseUp(coord, event) { }
     onMouseLeave(coord, event) { }
     onMouseEnter(coord, event) { }
@@ -81,7 +85,6 @@ class DrawingStraightLine extends PaintFunction {
         this.drawLine(this.contextReal, this.startpoint, this.endpoint);
         this.reset();
     }
-
 
     // Internal function 
 

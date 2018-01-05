@@ -35,8 +35,8 @@
   <script type='text/javascript' src="function/drawing-polygon.js"></script>
   <script type='text/javascript' src="function/pan.js"></script>
   <script type='text/javascript'>
-    currentFunction = new DrawingStraightLine(contextReal, contextDraft);
-    
+    currentFunction = new DrawingEllipse(contextReal, contextDraft);
+
     $('#drawing-rectangle').click(() => {
       currentFunction = new DrawingRectangle(contextReal, contextDraft);
     });
