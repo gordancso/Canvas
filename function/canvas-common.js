@@ -4,6 +4,9 @@ let canvasDraft = document.getElementById('canvas-draft');
 let contextDraft = canvasDraft.getContext('2d');
 let currentFunction;
 let dragging = false;
+let snapshot = [];
+let index = 0;
+snapshot[0] = contextReal.getImageData(0,0, canvasReal.width, canvasReal.height);
 
 $('#canvas-draft').mousedown(function (e) {
     let mouseX = e.pageX - this.offsetLeft;
@@ -56,4 +59,8 @@ class PaintFunction {
     onMouseLeave() { }
     onMouseEnter() { }
     onDobuleClick() { }
+    capture(){
+        snapshot.length = index + 1;
+        snapshot[++index] = contextReal.getImageData(0,0, canvasReal.width, canvasReal.height);
+    }
 }

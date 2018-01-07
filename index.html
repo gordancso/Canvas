@@ -24,6 +24,8 @@
     <span class="btn btn-info fa fa-paint-brush" id="drawing-ellipse">Drawing Ellipse</span>
     <span class="btn btn-info fa fa-paint-brush" id="drawing-polygon">Drawing Polygon</span>
     <span class="btn btn-info fa fa-paint-brush" id="pan">Pan</span>
+    <span class="btn btn-info fa fa-paint-brush" id="previous">Previous</span>
+    <span class="btn btn-info fa fa-paint-brush" id="next">Next</span>
   </div>
 
   <script type='text/javascript' src="function/canvas-common.js"></script>
@@ -34,9 +36,11 @@
   <script type='text/javascript' src="function/drawing-ellipse.js"></script>
   <script type='text/javascript' src="function/drawing-polygon.js"></script>
   <script type='text/javascript' src="function/pan.js"></script>
+  <script type='text/javascript' src="function/snapshot.js"></script>
   <script type='text/javascript'>
     currentFunction = new DrawingEllipse(contextReal, contextDraft);
 
+    // Select Shape Tools
     $('#drawing-rectangle').click(() => {
       currentFunction = new DrawingRectangle(contextReal, contextDraft);
     });
@@ -57,6 +61,14 @@
     });
     $('#pan').click(() => {
       currentFunction = new Pan(contextReal, contextDraft);
+    });
+
+    // Control the snapshot
+    $('#previous').click(() => {
+      Previous();
+    });
+    $('#next').click(() => {
+      Next();
     });
 
   </script>

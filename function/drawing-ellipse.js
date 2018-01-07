@@ -17,73 +17,58 @@ class DrawingEllipse extends PaintFunction {
             this.createCP(coord[0], coord[1], 7);
         }
 
+        // check if the users click the control points
         let i = 0;
         for (const prop in this.CPobj) {
             this.clickCP[i++] = this.selectCP(coord, this.CPobj[prop], 20);
         }
 
-        if (this.clickCP.some(x => x == true)){
-            this.click = true;
+        // check if the users click the shape
+        this.clickShape = this.selectShape(coord, 20);
+
+        if (this.clickCP.some(x => x == true) || this.clickShape) {
+            this.selected = true;
         }
 
+        //store the temporary coord for dragging or reshape
         this.previousCoord = coord.slice(0);
-        
     }
 
-    onDragging(coord, event) {
-        if (this.click){
-            if (this.clickCP.some(x => x == true)) {
-                this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
-    
-                if (this.clickCP[1] || this.clickCP[6]) {
-                    this.radiusY = Math.abs(coord[1] - this.ycenter);
-                }
-                else if (this.clickCP[4] || this.clickCP[5]) {
-                    this.radiusX = Math.abs(coord[0] - this.xcenter);  
-                }
-                else {
-                    this.calculation(coord[0],coord[1]);
-                }
-    
-                this.drawEllipse(this.contextDraft);
-                this.final = coord.slice(0);
-            }
-
-            this.dragging = true;
-        }
-    }
+    onDragging(coord, event) { }
 
     onMouseMove(coord, event) {
-        if (this.click){
+        if (this.selected) {
+            this.movement = true;
+            this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
+
             if (this.clickCP.some(x => x == true)) {
-                this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
-    
                 if (this.clickCP[1] || this.clickCP[6]) {
-                    this.radiusY = Math.abs(coord[1] - this.ycenter);
+                    this.radiusY = Math.abs(coord[1] - this.ycenter); // only change the radiusY 
                 }
-                else if (this.clickCP[4] || this.clickCP[5]) {
-                    this.radiusX = Math.abs(coord[0] - this.xcenter);  
+                else if (this.clickCP[3] || this.clickCP[4]) {
+                    this.radiusX = Math.abs(coord[0] - this.xcenter); // only change the radiusX 
                 }
                 else {
-                    this.calculation(coord[0],coord[1]);
+                    this.calculation(coord[0], coord[1]); //re-calculate the both radius
                 }
-    
-                
-                this.drawEllipse(this.contextDraft);
-                this.final = coord.slice(0);
             }
+            else if (this.clickShape) {
+                this.xcenter = this.xcenter + (coord[0] - this.previousCoord[0]);
+                this.ycenter = this.ycenter + (coord[1] - this.previousCoord[1]);
+            }
+
+            this.drawEllipse(this.contextDraft);
+            this.previousCoord = coord.slice(0);
         }
-        
     }
 
     onMouseUp(coord, event) {
         this.createAllCP();
         this.drawRect(this.contextDraft);
-        if (this.dragging){
-            this.click = false;
-            this.dragging = false;
+        if (this.movement) {
+            this.selected = false;
+            this.movement = false;
         }
-            
     }
 
     onMouseLeave() { }
@@ -92,8 +77,9 @@ class DrawingEllipse extends PaintFunction {
 
     onDobuleClick(coord, event) {
         this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
-        this.drawEllipse(this.contextReal, this.final[0], this.final[1]);
-        this.firstClick = true;
+        this.drawEllipse(this.contextReal, this.previousCoord[0], this.previousCoord[1]);
+        this.capture();
+        this.reset();
     }
 
     // Internal Function
@@ -127,7 +113,7 @@ class DrawingEllipse extends PaintFunction {
         this.CPobj[name] = [x, y];
     }
 
-    createAllCP() { 
+    createAllCP() {
         this.createCP(this.xcenter - this.radiusX, this.ycenter - this.radiusY, 0);
         this.createCP(this.xcenter, this.ycenter - this.radiusY, 1);
         this.createCP(this.xcenter + this.radiusX, this.ycenter - this.radiusY, 2);
@@ -145,17 +131,30 @@ class DrawingEllipse extends PaintFunction {
             return false;
     }
 
+    selectShape(coord, tolerance) {
+        let xmin = this.xcenter - this.radiusX - tolerance;
+        let xmax = this.xcenter + this.radiusX + tolerance;
+        let ymin = this.ycenter - this.radiusY - tolerance;
+        let ymax = this.ycenter + this.radiusY + tolerance;
+
+        if (coord[0] > xmin && coord[0] < xmax && coord[1] > ymin && coord[1] < ymax) {
+            return true;
+        }
+        else
+            return false;
+    }
+
     // reset the checking attribute 
     reset() {
         this.firstClick = true;
-        this.xcenter;
-        this.ycenter;
-        this.radiusX;
-        this.radiusY;
+        this.xcenter = 0;
+        this.ycenter = 0;
+        this.radiusX = 0;
+        this.radiusY = 0;
         this.clickCP = [];
         this.CPobj = {};
-        this.click = false; // Determine the clicking of control point 
-        this.dragging = false; 
+        this.clickShape = false;
+        this.selected = false; // Determine the clicking of control point 
+        this.movement = false;
     }
-
 }

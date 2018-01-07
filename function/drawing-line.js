@@ -13,10 +13,13 @@ class DrawingLine extends PaintFunction {
     }
     onDragging(coord, event) {
         this.draw(coord[0], coord[1]);
+        
     }
 
     onMouseMove() { }
-    onMouseUp() { }
+    onMouseUp(coord, event) { 
+        this.capture();
+    }
     onMouseLeave() { }
     onMouseEnter() { }
 

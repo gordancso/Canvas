@@ -39,7 +39,8 @@ class DrawingPolygon extends PaintFunction {
             this.xArr.pop(coord[0]);
             this.yArr.pop(coord[1]);
             this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
-            this.redraw(this.contextReal, this.xArr[0], this.yArr[0])
+            this.redraw(this.contextReal, this.xArr[0], this.yArr[0]);
+            this.capture();
             this.reset();
         }
         else {
