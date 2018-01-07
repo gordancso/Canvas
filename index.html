@@ -27,6 +27,9 @@
     <span class="btn btn-info fa fa-paint-brush" id="drawing-line">Drawing Line</span>
     <span class="btn btn-info fa fa-paint-brush" id="drawing-circle">Drawing Circle</span>
     <span class="btn btn-info fa fa-paint-brush" id="drawing-ellipse">Drawing Ellipse</span>
+<!--    <span class="btn btn-info fa fa-paint-brush" id="test-rect">Test Rect</span> --->
+<!--    <span class="btn btn-info fa fa-paint-brush" id="sample">Sample</span> --->
+
     <br>
     <span class="btn btn-info fa fa-paint-brush" id="clear-all">Clear</span>
     <span class="btn btn-info fa fa-paint-brush" id="eraser">Eraser</span>
@@ -57,6 +60,8 @@
   <!-- font-size display tool --->
   <script type='text/javascript' src="fontsizeGet.js"></script>
 
+  <!-- testRect
+  <script type='text/javascript' src="testRect.js"></script> --->
 
   <script type='text/javascript'>
 
@@ -77,6 +82,11 @@
     $('#eraser').click(() => {
       currentFunction = new Eraser(contextReal, contextDraft);
     });
+
+//    $('#test-rect').click(() => {
+//      currentFunction = new DrawingStraightLine(contextReal, contextDraft);
+//    });
+
 
   // clear all
     $('#clear-all').click(() => {
