@@ -15,7 +15,7 @@
 
 #canvas-container{
 
-    height:720px;
+    height:500px;
     position: flex;
 
 }
@@ -58,4 +58,3 @@ h2 {
 canvas:hover {
   cursor: crosshair;
 }
-

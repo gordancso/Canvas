@@ -44,10 +44,10 @@ class DrawingEllipse extends PaintFunction {
 
             if (this.clickCP.some(x => x == true)) {
                 if (this.clickCP[1] || this.clickCP[6]) {
-                    this.radiusY = Math.abs(coord[1] - this.ycenter); // only change the radiusY 
+                    this.radiusY = Math.abs(coord[1] - this.ycenter); // only change the radiusY
                 }
                 else if (this.clickCP[3] || this.clickCP[4]) {
-                    this.radiusX = Math.abs(coord[0] - this.xcenter); // only change the radiusX 
+                    this.radiusX = Math.abs(coord[0] - this.xcenter); // only change the radiusX
                 }
                 else {
                     this.calculation(coord[0], coord[1]); //re-calculate the both radius
@@ -76,7 +76,7 @@ class DrawingEllipse extends PaintFunction {
 
     onMouseEnter() { }
 
-    onDobuleClick(coord, event) {
+    onDoubleClick(coord, event) {
         this.draft = false;
         this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
         this.drawEllipse(this.contextReal, this.previousCoord[0], this.previousCoord[1]);
@@ -146,7 +146,7 @@ class DrawingEllipse extends PaintFunction {
             return false;
     }
 
-    // reset the checking attribute 
+    // reset the checking attribute
     reset() {
         this.firstClick = true;
         this.xcenter = 0;
@@ -156,9 +156,7 @@ class DrawingEllipse extends PaintFunction {
         this.clickCP = [];
         this.CPobj = {};
         this.clickShape = false;
-        this.selected = false; // Determine the clicking of control point 
+        this.selected = false; // Determine the clicking of control point
         this.movement = false;
     }
 }
-
-    

@@ -87,7 +87,7 @@ class DrawingStraightLine extends PaintFunction {
     onMouseEnter(coord, event) { }
 
     // draw the shape without control points in real canvas
-    onDobuleClick(coord, event) {
+    onDoubleClick(coord, event) {
         this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
         this.drawLine(this.contextReal, this.startpoint, this.endpoint);
         this.draft = false;
@@ -95,7 +95,7 @@ class DrawingStraightLine extends PaintFunction {
         this.reset();
     }
 
-    // Internal function 
+    // Internal function
 
     // create control points in draft canvas
     createCP(point) {
@@ -164,7 +164,7 @@ class DrawingStraightLine extends PaintFunction {
         ctx.stroke();
     }
 
-    // reset the checking attribute 
+    // reset the checking attribute
     reset() {
         this.startpoint = [];
         this.endpoint = [];
