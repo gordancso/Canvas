@@ -3,10 +3,11 @@ class DrawingPolygon extends PaintFunction {
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
+        this.contextReal.setLineDash([]);
+        this.contextDraft.setLineDash([]);
         this.contextReal.strokeStyle = this.contextDraft.strokeStyle = "#000";
-        this.contextReal.lineJoin = this.contextDraft.lineJoin = "miter";;
-        this.contextReal.lineWidth = this.contextDraft.lineWidth = 2;
-        this.contextReal.fillStyle = this.contextDraft.fillStyle = '#ddd';
+        this.contextReal.lineJoin = this.contextDraft.lineJoin = "miter";
+        this.contextReal.lineWidth = this.contextDraft.lineWidth = slider.value;
         this.reset();
     }
 
@@ -53,6 +54,7 @@ class DrawingPolygon extends PaintFunction {
     // redraw all the points until (x,y)
     redraw(ctx, x, y) {
         ctx.beginPath();
+        ctx.fillStyle = rgbaColor;
         ctx.moveTo(this.xArr[0], this.yArr[0]);
         for (let i = 0; i < this.xArr.length; i++)
             ctx.lineTo(this.xArr[i], this.yArr[i]);

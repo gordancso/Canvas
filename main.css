@@ -14,10 +14,8 @@
 }
 
 #canvas-container{
-
-    height:720px;
+    height:500px;
     position: flex;
-
 }
 
 /* -------------Color picker------------- */

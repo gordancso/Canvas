@@ -2,32 +2,41 @@ class Eraser extends PaintFunction {
     constructor(contextReal) {
         super();
         this.context = contextReal;
+        this.reset();
     }
 
     onMouseDown(coord, event) {
-        this.context.strokeStyle = "rgba(255,0,0,0.5)";
+        this.context.strokeStyle = "rgba(0,0,0,0.5)";
         this.context.lineJoin = this.context.lineCap = "round";
         this.context.lineWidth = slider.value;
         this.context.beginPath();
-        this.context.moveTo(coord[0], coord[1]);
-        this.draw(coord[0], coord[1]);
+        this.context.moveTo(coord[0],coord[1]);
     }
 
     onDragging(coord, event) {
-        this.context.globalCompositeOperation = "destination-out";
         this.draw(coord[0], coord[1]);
-        this.context.globalCompositeOperation = "source-over";
+        this.earsing = true;
     }
 
     onMouseMove() { }
-    onMouseUp() { }
+    onMouseUp(coord, event) { 
+        if (this.earsing){
+            this.capture(); 
+            this.earsing = false;
+        }
+          
+    }
     onMouseLeave() { }
     onMouseEnter() { }
 
     draw(x, y) {
+        this.context.globalCompositeOperation = "destination-out";
         this.context.lineTo(x, y);
-        this.context.moveTo(x, y);
-        this.context.closePath();
         this.context.stroke();
+        this.context.globalCompositeOperation = "source-over";
+    }
+
+    reset(){
+        this.firstUp = true;
     }
 }

@@ -14,6 +14,7 @@ var x = 0;
 var y = 0;
 var drag = false;
 var rgbaColor = 'rgba(255,0,0,1)';
+var rgbaColor2 = 'rgba(255,0,0,0.005)';
 
 ctx1.rect(0, 0, width1, height1);
 fillGradient();
@@ -35,6 +36,7 @@ function click(e) {
   y = e.offsetY;
   var imageData = ctx2.getImageData(x, y, 1, 1).data;
   rgbaColor = 'rgba(' + imageData[0] + ',' + imageData[1] + ',' + imageData[2] + ',1)';
+  rgbaColor2 = 'rgba(' + imageData[0] + ',' + imageData[1] + ',' + imageData[2] + ',0.005)';
   fillGradient();
 }
 
@@ -75,6 +77,7 @@ function changeColor(e) {
   y = e.offsetY;
   var imageData = ctx1.getImageData(x, y, 1, 1).data;
   rgbaColor = 'rgba(' + imageData[0] + ',' + imageData[1] + ',' + imageData[2] + ',1)';
+  rgbaColor2 = 'rgba(' + imageData[0] + ',' + imageData[1] + ',' + imageData[2] + ',0.005)';
   colorLabel.style.backgroundColor = rgbaColor;
 }
 
