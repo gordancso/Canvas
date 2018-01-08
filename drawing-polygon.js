@@ -3,14 +3,10 @@ class DrawingPolygon extends PaintFunction {
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
-        this.contextReal.strokeStyle = "#000";
-        this.contextDraft.strokeStyle = "#000";
-        this.contextReal.lineJoin = "miter";
-        this.contextDraft.lineJoin = "miter";
-        this.contextReal.lineWidth = 2;
-        this.contextDraft.lineWidth = 2;
-        this.contextReal.fillStyle = '#ddd';
-        this.contextDraft.fillStyle = '#ddd';
+        this.contextReal.strokeStyle = this.contextDraft.strokeStyle = "#000";
+        this.contextReal.lineJoin = this.contextDraft.lineJoin = "miter";;
+        this.contextReal.lineWidth = this.contextDraft.lineWidth = 2;
+        this.contextReal.fillStyle = this.contextDraft.fillStyle = '#ddd';
         this.reset();
     }
 
@@ -19,39 +15,42 @@ class DrawingPolygon extends PaintFunction {
     onDragging(coord, event) { }
 
     onMouseMove(coord, event) {
-        if (this.mouseup) {
+        if (this.draft) {
             this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
-            
+
+            // check if users click the starting point
             if (Math.abs(coord[0] - this.xArr[0]) < 20 && Math.abs(coord[1] - this.yArr[0]) < 20)
-                this.redraw(this.contextDraft, this.xArr[0], this.yArr[0]);
-            else 
-                this.redraw(this.contextDraft, coord[0], coord[1]);
+                this.redraw(this.contextDraft, this.xArr[0], this.yArr[0]); // yes -> redraw until the starting point
+            else
+                this.redraw(this.contextDraft, coord[0], coord[1]); // no -> redraw until the temporary point
         }
     }
 
     onMouseUp(coord, event) {
+        // store all the anchor points
         this.xArr.push(coord[0]);
         this.yArr.push(coord[1]);
- 
-        console.log(coord[0], coord[1]);
 
-        if (!this.firstClick && Math.abs(coord[0] - this.xArr[0]) < 20 && Math.abs(coord[1] - this.yArr[0]) < 20) {
-            this.xArr.pop(coord[0]);
+        // redraw in real canvas
+        if (this.firstClick) {
+            this.firstClick = false;
+            this.draft = true;
+        }
+        else if (Math.abs(coord[0] - this.xArr[0]) < 20 && Math.abs(coord[1] - this.yArr[0]) < 20) {
+            this.xArr.pop(coord[0]); // remove the final temporary point 
             this.yArr.pop(coord[1]);
             this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
             this.redraw(this.contextReal, this.xArr[0], this.yArr[0]);
             this.capture();
+            this.draft = false;
             this.reset();
-        }
-        else {
-            this.firstClick = false;
-            this.mouseup = true;
         }
     }
 
     onMouseLeave() { }
     onMouseEnter() { }
 
+    // redraw all the points until (x,y)
     redraw(ctx, x, y) {
         ctx.beginPath();
         ctx.moveTo(this.xArr[0], this.yArr[0]);
@@ -62,9 +61,8 @@ class DrawingPolygon extends PaintFunction {
         ctx.stroke();
     }
 
-    reset(){
+    reset() {
         this.firstClick = true;
-        this.mouseup = false;
         this.xArr = [];
         this.yArr = [];
     }

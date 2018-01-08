@@ -14,9 +14,11 @@ class DrawingStraightLine extends PaintFunction {
             this.startpoint = coord.slice(0);
             this.endpoint = coord.slice(0);
             this.firstClick = false;
-            this.createCP(this.startpoint);
+            this.draft = true;
+            this.createCP(this.startpoint); // create first control point
         }
 
+        // check if users click the control or select the line
         this.clickCP['startpoint'] = this.selectCP(coord, this.startpoint, 20);
         this.clickCP['endpoint'] = this.selectCP(coord, this.endpoint, 20);
         this.clickLine = this.selectLine(coord, this.startpoint, this.endpoint, 20);
@@ -30,6 +32,7 @@ class DrawingStraightLine extends PaintFunction {
     onDragging(coord, event) {
         this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
 
+        // assign the current point to startpoint or endpoint
         if (this.clickCP['startpoint']) {
             this.startpoint = coord.slice(0);
         }
@@ -87,6 +90,7 @@ class DrawingStraightLine extends PaintFunction {
     onDobuleClick(coord, event) {
         this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
         this.drawLine(this.contextReal, this.startpoint, this.endpoint);
+        this.draft = false;
         this.capture();
         this.reset();
     }
@@ -168,6 +172,5 @@ class DrawingStraightLine extends PaintFunction {
         this.firstClick = true;
         this.clickCP = { startpoint: false, endpoint: false };
         this.clickLine = false;
-        this.count = 0; // Determine the clicking of control point 
     }
 }

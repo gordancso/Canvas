@@ -15,6 +15,7 @@ class DrawingEllipse extends PaintFunction {
             this.ycenter = coord[1];
             this.firstClick = false;
             this.createCP(coord[0], coord[1], 7);
+            this.draft = true;
         }
 
         // check if the users click the control points
@@ -76,6 +77,7 @@ class DrawingEllipse extends PaintFunction {
     onMouseEnter() { }
 
     onDobuleClick(coord, event) {
+        this.draft = false;
         this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
         this.drawEllipse(this.contextReal, this.previousCoord[0], this.previousCoord[1]);
         this.capture();

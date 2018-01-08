@@ -59,6 +59,7 @@ class PaintFunction {
     onMouseLeave() { }
     onMouseEnter() { }
     onDobuleClick() { }
+    reset() {}
     capture(){
         snapshot.length = index + 1;
         snapshot[++index] = contextReal.getImageData(0,0, canvasReal.width, canvasReal.height);
