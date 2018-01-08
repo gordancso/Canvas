@@ -14,6 +14,8 @@ class Selectors extends PaintFunction {
         this.y2 = -1;
 // to store coordinates
         this.boxes = [];
+        this.previousX = -1;
+        this.previousY = -1;
 // temp box to store coord.
         this.tmpBox = null;
 
@@ -30,10 +32,16 @@ class Selectors extends PaintFunction {
       this.x2 = event.offsetX;
       this.y2 = event.offsetY;
 //      console.log("mouseDown: " + this.x1 + " " + this.y1  + " " + this.x2 + " "+ this.y2)
+      this.previousX = event.offsetX;
+      this.previousY = event.offsetY;
+      console.log(this.previousX + " " + this.previousY)
 
     }
 
     onMouseMove(coord, event) {
+      this.previousX = event.offsetX;
+      this.previousY = event.offsetY;
+      console.log(this.previousX + " " + this.previousY)
       if (this.mousedown && this.clickedArea.box == -1) {
         this.x2 = event.offsetX;
         this.y2 = event.offsetY;
@@ -82,10 +90,12 @@ class Selectors extends PaintFunction {
       console.log(this.tmpBox);
       this.boxes.push(this.tmpBox)
       this.mousedown = false
-
+      this.previousX = event.offsetX;
+      this.previousY = event.offsetY;
       console.log("this.boxes" + this.boxes[0].x1 + this.boxes[0].y1);
       this.imgdt = this.contextReal.getImageData(this.tmpBox.x1, this.tmpBox.y1, this.tmpBox.x2-this.tmpBox.x1, this.tmpBox.y2-this.tmpBox.y1)
       console.log("true")
+      console.log(this.previousX + " " + this.previousY)
     }
 
     onDragging(coord, event) { }
@@ -104,7 +114,9 @@ class Selectors extends PaintFunction {
 
 //function
     redraw(){
+      console.log(this.tmpBox)
       this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
+      this.contextDraft.putImageData(this.tmpBox.x1,this.tmpBox.y1, this.tmpBox.x2-this.tmpBox.x1, this.tmpBox.y2-this.tmpBox.y1)
       this.contextDraft.beginPath();
       for (var i = 0; i < this.boxes.length; i++) {
         this.createCP(this.boxes[i], this.contextDraft);
