@@ -1,38 +1,91 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-  <link href="main.css" rel="stylesheet" type='text/css'>
-</head>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link href="main.css" rel="stylesheet" type="text/css">
+    </head>
+
 
 <body>
-  <div id="canvas-container">
-    <canvas id="canvas-real" class="canvas" width='1280px' height='720px'></canvas>
-    <canvas id="canvas-draft" class="canvas" width='1280px' height='720px'></canvas>
-  </div>
-  <div class="buttons">
-    <span class="btn btn-primary fa fa-square" id="drawing-rectangle">Drawing Rectangle</span>
-    <span class="btn btn-info fa fa-paint-brush" id="drawing-line">Drawing Line</span>
-  </div>
 
-  <script type='text/javascript' src="canvas-common.js"></script>
-  <script type='text/javascript' src="drawing-line.js"></script>
-  <script type='text/javascript' src="drawing-rectangle.js"></script>
-  <script type='text/javascript'>
-    $('#drawing-rectangle').click(() => {
-      currentFunction = new DrawingRectangle(contextReal, contextDraft);
-    });
-    $('#drawing-line').click(() => {
-      currentFunction = new DrawingLine(contextReal, contextDraft);
-    });
-    currentFunction = new DrawingRectangle(contextReal, contextDraft);    
-  </script>
+
+<div id = "canvas-container">
+<canvas id ="canvas-real" class="canvas" width='1280px' height='720px'></canvas>
+<canvas id ="canvas-draft" class="canvas" width='1280px' height='720px'></canvas>
+</div>
+
+<div class = "container">
+    <button id ="clear-canvas" type="button" class="btn btn-primary">Clear</button>
+    <button id ="eraser" type="button" class="btn btn-primary">Eraser</button>
+    <button id ="drawing-rectangle" type="button" class="btn btn-primary">Draw Rect</button>
+    <button id ="drawing-line" type="button" class="btn btn-primary">Draw line</button>
+    <button id ="drawing-circle" type="button" class="btn btn-primary">Draw circle</button>
+    <button id ="background-fill" type="button" class="btn btn-primary">Background</button>
+
+    <button id ="openFile" type="button" class="btn btn-primary">Upload</button>
+    <input id = "file" type = "file" accept = ".png, .jpg, jpeg"/>
+
+    <label for="color-input" id="color-label" style="background-color: red"></label>
+    <input type="checkbox" id="color-input" checked></input>
+        
+    <div id="color-picker">
+        <canvas id="color-block" height="150" width="150"></canvas>
+        <canvas id="color-strip" height="150" width="30"></canvas>
+    </div>
+
+</div>
+<script type='text/javascript' src="color-picker.js"></script>
+<script type='text/javascript' src="clear-canvas.js"></script>
+<script type='text/javascript' src="canvas-common.js"></script>
+<script type='text/javascript' src="drawing-line.js"></script>
+<script type='text/javascript' src="drawing-circle.js"></script>
+<script type='text/javascript' src="drawing-rectangle.js"></script>
+<script type='text/javascript' src="background-fill.js"></script>
+<script type='text/javascript' src="eraser.js"></script>
+<script type='text/javascript' src="upload-download.js"></script>
+
+
+<script type='text/javascript'>    
+
+
+
+$('#drawing-rectangle').click(() => {
+    currentFunction = new drawingRectangle(contextReal,contextDraft);  
+});
+
+$('#drawing-line').click(() => {
+    currentFunction = new drawingLine(contextReal,contextDraft);  
+});
+
+$('#drawing-circle').click(() => {
+    currentFunction = new drawingCircle(contextReal,contextDraft);  
+});
+
+$('#clear-canvas').click(() => {
+    currentFunction = new clearCanvas(contextReal,contextDraft);  
+});
+
+$('#eraser').click(() => {
+    currentFunction = new eraser(contextReal,contextDraft);  
+});
+$('#background-fill').click(() => {
+    currentFunction = new backgroundFill(contextReal,contextDraft);  
+});
+$('#openFile').click(() => {
+    currentFunction = new triggerClick();  
+});
+
+
+
+
+
+</script>
+
 </body>
-
 </html>

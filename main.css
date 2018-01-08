@@ -1,19 +1,60 @@
-body{
-    background-color: aqua;
+body,html{
+  padding: 0;
+  margin: 0;
 }
-.canvas{
-    border:1px black dotted;
-    position:absolute;
-    top:0px;
-    bottom:0px;
-    left:0px;
-    right:0px
-}
-
-#canvas-draft{
-    background-color: transparent;
+canvas{
+  border:5px dotted black;
+  position: absolute;
+  background: transparent;
 }
 
 #canvas-container{
-    height:720px;
+    height: 720px;
+}
+
+#file {
+  visibility: hidden;
+}
+
+/*color picker css*/
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #e6e6e6;
+}
+h2 {
+  background-color: #dbdbdb;
+  margin: 0;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-family: 'Open Sans';
+}
+#color-input {
+  display: none;
+}
+#color-label {
+  margin-left: 15px;
+  position: absolute;
+  height: 30px;
+  width: 50px;
+} 
+#color-input:checked ~ #color-picker {
+  opacity: 1;
+}
+#color-picker {
+  position: absolute;
+  left: 70px; 
+  background-color: white;
+  height: 150px;
+  width: 185px;
+  border: solid 1px #ccc;
+  opacity: 0;
+  padding: 5px;
+}
+
+
+canvas:hover {
+  cursor: crosshair;
 }
