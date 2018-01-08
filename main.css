@@ -1,28 +1,30 @@
-body,html{
-  padding: 0;
-  margin: 0;
+/* ------------canvas styling------------- */
+
+.canvas{
+    border:1px black dotted;
+    position:absolute;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
 }
-canvas{
-  border:5px dotted black;
-  position: absolute;
-  background: transparent;
+
+#canvas-draft{
+    background-color: transparent;
 }
 
 #canvas-container{
-    height: 720px;
+
+    height:720px;
+    position: flex;
+
 }
 
-#file {
-  visibility: hidden;
-}
+/* -------------Color picker------------- */
 
-/*color picker css*/
-
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 body {
   margin: 0;
   padding: 0;
-  background-color: #e6e6e6;
 }
 h2 {
   background-color: #dbdbdb;
@@ -39,22 +41,21 @@ h2 {
   position: absolute;
   height: 30px;
   width: 50px;
-} 
+}
 #color-input:checked ~ #color-picker {
   opacity: 1;
 }
 #color-picker {
   position: absolute;
-  left: 70px; 
+  left: 70px;
   background-color: white;
-  height: 150px;
-  width: 185px;
+  height: 160px;
+  width: 200px;
   border: solid 1px #ccc;
   opacity: 0;
   padding: 5px;
 }
-
-
 canvas:hover {
   cursor: crosshair;
 }
+

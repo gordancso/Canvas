@@ -1,6 +1,3 @@
-
-
-
 var colorBlock = document.getElementById('color-block');
 var ctx1 = colorBlock.getContext('2d');
 var width1 = colorBlock.width;
@@ -45,13 +42,13 @@ function fillGradient() {
   ctx1.fillStyle = rgbaColor;
   ctx1.fillRect(0, 0, width1, height1);
 
-  var grdWhite = ctx2.createLinearGradient(0, 0, width1, 0);
+  var grdWhite = ctx1.createLinearGradient(0, 0, width1, 0);
   grdWhite.addColorStop(0, 'rgba(255,255,255,1)');
   grdWhite.addColorStop(1, 'rgba(255,255,255,0)');
   ctx1.fillStyle = grdWhite;
   ctx1.fillRect(0, 0, width1, height1);
 
-  var grdBlack = ctx2.createLinearGradient(0, 0, 0, height1);
+  var grdBlack = ctx1.createLinearGradient(0, 0, 0, height1);
   grdBlack.addColorStop(0, 'rgba(0,0,0,0)');
   grdBlack.addColorStop(1, 'rgba(0,0,0,1)');
   ctx1.fillStyle = grdBlack;
