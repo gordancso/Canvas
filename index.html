@@ -27,7 +27,7 @@
     <span class="btn btn-info fa fa-paint-brush" id="drawing-line">Drawing Line</span>
     <span class="btn btn-info fa fa-paint-brush" id="drawing-circle">Drawing Circle</span>
     <span class="btn btn-info fa fa-paint-brush" id="drawing-ellipse">Drawing Ellipse</span>
-<!--    <span class="btn btn-info fa fa-paint-brush" id="test-rect">Test Rect</span> --->
+    <span class="btn btn-info fa fa-paint-brush" id="selectors">Select</span>
 <!--    <span class="btn btn-info fa fa-paint-brush" id="sample">Sample</span> --->
 
     <br>
@@ -60,8 +60,8 @@
   <!-- font-size display tool --->
   <script type='text/javascript' src="fontsizeGet.js"></script>
 
-  <!-- testRect
-  <script type='text/javascript' src="testRect.js"></script> --->
+  <!-- select --->
+  <script type='text/javascript' src="selectors.js"></script>
 
   <script type='text/javascript'>
 
@@ -83,14 +83,15 @@
       currentFunction = new Eraser(contextReal, contextDraft);
     });
 
-//    $('#test-rect').click(() => {
-//      currentFunction = new DrawingStraightLine(contextReal, contextDraft);
-//    });
+    $('#selectors').click(() => {
+      currentFunction = new Selectors(contextReal, contextDraft);
+    });
 
 
   // clear all
     $('#clear-all').click(() => {
       contextReal.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
+      contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height)
     });
 
   // default to be rectangle feature
