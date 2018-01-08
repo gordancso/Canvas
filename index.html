@@ -19,19 +19,49 @@
   <div class="buttons">
     <span class="btn btn-primary fa fa-square" id="drawing-rectangle">Drawing Rectangle</span>
     <span class="btn btn-info fa fa-paint-brush" id="drawing-line">Drawing Line</span>
+    <span class="btn btn-info fa fa-paint-brush" id="drawing-straightLine">Drawing Straight Line</span>
+    <span class="btn btn-info fa fa-paint-brush" id="drawing-ellipse">Drawing Ellipse</span>
+    <span class="btn btn-info fa fa-paint-brush" id="drawing-polygon">Drawing Polygon</span>
+    <span class="btn btn-info fa fa-paint-brush" id="previous">Previous</span>
+    <span class="btn btn-info fa fa-paint-brush" id="next">Next</span>
   </div>
 
   <script type='text/javascript' src="canvas-common.js"></script>
   <script type='text/javascript' src="drawing-line.js"></script>
   <script type='text/javascript' src="drawing-rectangle.js"></script>
+  <script type='text/javascript' src="drawing-straightLine.js"></script>
+  <script type='text/javascript' src="drawing-ellipse.js"></script>
+  <script type='text/javascript' src="drawing-polygon.js"></script>
+  <script type='text/javascript' src="snapshot.js"></script>
   <script type='text/javascript'>
+    currentFunction = new DrawingEllipse(contextReal, contextDraft);
+
+    // Select Shape Tools
     $('#drawing-rectangle').click(() => {
       currentFunction = new DrawingRectangle(contextReal, contextDraft);
     });
     $('#drawing-line').click(() => {
       currentFunction = new DrawingLine(contextReal, contextDraft);
+    }); 
+    $('#drawing-straightLine').click(() => {
+      currentFunction = new DrawingStraightLine(contextReal, contextDraft);
+    });  
+    $('#drawing-ellipse').click(() => {
+      currentFunction = new DrawingEllipse(contextReal, contextDraft);
     });
-    currentFunction = new DrawingRectangle(contextReal, contextDraft);    
+    $('#drawing-polygon').click(() => {
+      currentFunction = new DrawingPolygon(contextReal, contextDraft);
+    });
+
+    // Control the snapshot
+    $('#previous').click(() => {
+      Previous();
+    });
+    $('#next').click(() => {
+      currentFunction.reset();
+      Next();
+    });
+
   </script>
 </body>
 
