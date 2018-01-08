@@ -47,7 +47,7 @@ $('#canvas-draft').mouseenter(function (e) {
 $('#canvas-draft').dblclick(function (e) {
     let mouseX = e.pageX - this.offsetLeft;
     let mouseY = e.pageY - this.offsetTop;
-    currentFunction.onDobuleClick([mouseX, mouseY], e);
+    currentFunction.onDoubleClick([mouseX, mouseY], e);
 });
 
 class PaintFunction {
@@ -58,7 +58,7 @@ class PaintFunction {
     onMouseUp() { }
     onMouseLeave() { }
     onMouseEnter() { }
-    onDobuleClick() { }
+    onDoubleClick() { }
     reset() {}
     capture(){
         snapshot.length = index + 1;
