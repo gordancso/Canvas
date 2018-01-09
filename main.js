@@ -1,5 +1,6 @@
 $(document).ready(function (){
     let canvas_width, canvas_height;
+    
 
     if ($(window).width() < 576){
         canvas_width = $(window).width();
@@ -9,6 +10,9 @@ $(document).ready(function (){
         $('#canvas-real')[0].height = $('#canvas-draft')[0].height = canvas_height;
         $('#canvas-real').css({'left':'0px', 'top':'100px'});
         $('#canvas-draft').css({'left':'0px', 'top':'100px'});
+        $('i').removeClass('fa-2x');
+        $('.btn-sq-xs').css({'width':'24px','height':'24px','padding':'3px'});
+        $('.icon').css('textAlign','left');
     }
         
     else{
@@ -33,6 +37,9 @@ $(window).resize(function() {
         $('#canvas-real')[0].height = $('#canvas-draft')[0].height = canvas_height;
         $('#canvas-real').css({'left':'0px', 'top':'100px'});
         $('#canvas-draft').css({'left':'0px', 'top':'100px'});
+        $('i').removeClass('fa-2x');
+        $('.btn-sq-xs').css({'width':'24px','height':'24px','padding':'3px'});
+        $('.icon').css('textAlign','left');
     }
         
     else{
@@ -43,5 +50,8 @@ $(window).resize(function() {
         $('#canvas-real')[0].height = $('#canvas-draft')[0].height = canvas_height;
         $('#canvas-real').css({'left':'200px', 'top':'0px'});
         $('#canvas-draft').css({'left':'200px', 'top':'0px'});
+        $('i').addClass('fa-2x');
+        $('.btn-sq-xs').css({'width':'48px','height':'48px','padding':'6px'});
+        $('.icon').css('textAlign','center');
     }
 });

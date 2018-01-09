@@ -30,8 +30,8 @@ body{
 
 
 .btn-sq-xs {
-  width: 48px !important;
-  height: 48px !important;
+  width: 48px;
+  height: 48px;
   padding: 6px;
 }
 
@@ -91,4 +91,12 @@ h2 {
 
 canvas:hover {
   cursor: crosshair;
+}
+
+@media (max-width: 576px){
+  .icon{
+    width:40%;
+    display: inline-block;
+  }
+
 }

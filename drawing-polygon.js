@@ -3,13 +3,7 @@ class DrawingPolygon extends PaintFunction {
     super();
     this.contextReal = contextReal;
     this.contextDraft = contextDraft;
-    this.contextReal.setLineDash([]);
-    this.contextDraft.setLineDash([]);
-    this.contextReal.strokeStyle = this.contextDraft.strokeStyle = "#000";
-    this.contextReal.lineJoin = this.contextDraft.lineJoin = "miter";
-    this.contextReal.lineWidth = this.contextDraft.lineWidth = slider.value;
     this.reset();
-
   }
 
   onMouseDown(coord, event) {
@@ -47,6 +41,7 @@ class DrawingPolygon extends PaintFunction {
     if (this.firstClick) {
       this.firstClick = false;
       this.draft = true;
+      this.lineStyleReset();
     } else if (Math.abs(coord[0] - this.xArr[0]) < 20 && Math.abs(coord[1] - this.yArr[0]) < 20) {
       this.xArr.pop(coord[0]); // remove the final temporary point
       this.yArr.pop(coord[1]);
@@ -77,5 +72,14 @@ class DrawingPolygon extends PaintFunction {
     this.firstClick = true;
     this.xArr = [];
     this.yArr = [];
+  }
+
+  lineStyleReset(){
+    this.contextReal.strokeStyle = this.contextDraft.strokeStyle = rgbaColor;
+    this.contextReal.lineJoin = this.contextDraft.lineJoin = "round";
+    this.contextReal.lineWidth = this.contextDraft.lineWidth = 2;
+    this.contextReal.shadowBlur = this.contextDraft.shadowBlur = 0;
+    this.contextReal.setLineDash([]);
+    this.contextDraft.setLineDash([]);
   }
 }
