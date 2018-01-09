@@ -23,6 +23,7 @@ class DrawingLine extends PaintFunction {
     onMouseUp(coord, event) {
         this.draft = false;
         this.capture();
+        this.context.beginPath();
     }
     onMouseLeave() { }
     onMouseEnter() { }
@@ -33,6 +34,8 @@ class DrawingLine extends PaintFunction {
         this.context.closePath();
         this.context.stroke();
     }
+
+    reset(){}
 }
 
 class LinePatternBrush extends PaintFunction {
@@ -84,6 +87,8 @@ class LinePatternBrush extends PaintFunction {
         ctx.stroke();
         return ctx.createPattern(patternCanvas, 'repeat');
     }
+
+    reset(){}
 }
 
 class LineShadowBrush extends PaintFunction {
@@ -91,9 +96,9 @@ class LineShadowBrush extends PaintFunction {
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
-        
+
         this.contextReal.lineJoin = this.contextReal.lineCap = this.contextDraft.lineJoin = this.contextDraft.lineCap = 'round';
-        
+
         this.contextReal.shadowColor = this.contextDraft.shadowColor = 'rgb(0, 0, 0)';
         this.reset();
     }
@@ -110,7 +115,7 @@ class LineShadowBrush extends PaintFunction {
     }
 
     onMouseMove() { }
-    
+
     onMouseUp(coord, event) {
         this.draw(this.contextReal);
         this.draft = false;
