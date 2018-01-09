@@ -3,9 +3,10 @@ class DrawingEllipse extends PaintFunction {
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
-        this.contextReal.fillStyle = this.contextDraft.fillStyle = "#f44";
+        this.contextReal.setLineDash([]);
+        this.contextDraft.setLineDash([]);
         this.contextReal.lineJoin = this.contextDraft.lineJoin = "round";
-        this.contextReal.lineWidth = this.contextDraft.lineWidth = 2;
+        this.contextReal.lineWidth = this.contextDraft.lineWidth = slider.value;
         this.reset();
     }
 
@@ -74,7 +75,9 @@ class DrawingEllipse extends PaintFunction {
 
     onMouseLeave() { }
 
-    onMouseEnter() { }
+    onMouseEnter(coord, event) { 
+        
+    }
 
     onDoubleClick(coord, event) {
         this.draft = false;
@@ -93,7 +96,7 @@ class DrawingEllipse extends PaintFunction {
     drawEllipse(ctx) {
         ctx.beginPath();
         ctx.ellipse(this.xcenter, this.ycenter, this.radiusX, this.radiusY, 0, 0, 2 * Math.PI);
-        ctx.fillStyle = '#8ED6FF';
+        ctx.fillStyle = rgbaColor;
         ctx.fill();
         ctx.stroke();
     }

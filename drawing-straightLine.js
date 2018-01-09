@@ -3,9 +3,11 @@ class DrawingStraightLine extends PaintFunction {
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
-        this.contextReal.fillStyle = this.contextDraft.fillStyle = "#f44";
+        this.contextReal.setLineDash([]);
+        this.contextDraft.setLineDash([]);
+        this.contextReal.fillStyle = this.contextDraft.fillStyle = rgbaColor;
         this.contextReal.lineJoin = this.contextDraft.lineJoin = "round";
-        this.contextReal.lineWidth = this.contextDraft.lineWidth = 2;
+        this.contextReal.lineWidth = this.contextDraft.lineWidth = slider.value;
         this.reset();
     }
 
@@ -156,7 +158,7 @@ class DrawingStraightLine extends PaintFunction {
 
     // draw the line with start point and end point
     drawLine(ctx, start, end) {
-        ctx.strokeStyle = "#f44";
+        ctx.strokeStyle = rgbaColor;
         ctx.beginPath();
         ctx.moveTo(start[0], start[1]);
         ctx.lineTo(end[0], end[1]);
