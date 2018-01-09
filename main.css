@@ -3,10 +3,6 @@
 .canvas{
     border:1px black dotted;
     position:absolute;
-    top:0px;
-    bottom:0px;
-    left:0px;
-    right:0px;
 }
 
 #canvas-draft{
@@ -56,4 +52,3 @@ h2 {
 canvas:hover {
   cursor: crosshair;
 }
-

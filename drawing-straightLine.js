@@ -97,7 +97,7 @@ class DrawingStraightLine extends PaintFunction {
         this.reset();
     }
 
-    // Internal function 
+    // Internal function
 
     // create control points in draft canvas
     createCP(point) {
@@ -166,7 +166,7 @@ class DrawingStraightLine extends PaintFunction {
         ctx.stroke();
     }
 
-    // reset the checking attribute 
+    // reset the checking attribute
     reset() {
         this.startpoint = [];
         this.endpoint = [];
