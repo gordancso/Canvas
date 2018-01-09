@@ -1,162 +1,150 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
-        crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-        crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
-        crossorigin="anonymous"></script>
-    <link href="main.css" rel="stylesheet" type='text/css'>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+  <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+
+  <link href="main.css" rel="stylesheet" type='text/css'>
 </head>
 
 <body>
 
+  <div id="control-panel">
+    <div class="icon">
+      <a href="#" class="btn btn-sq-xs "><i class="fa fa-pencil fa-2x" id="drawing-line"></i></a>
+      <a href="#" class="btn btn-sq-xs "><i class="fa fa-pencil-square fa-2x" id="linepattern-brush"></i></a>
+      <a href="#" class="btn btn-sq-xs "><i class="fa fa-pencil-square-o fa-2x" id="lineshadow-brush"></i></a>
 
-    <div id="control-board-wrapper" class="col-lg-12 col-md-12 col-sm-12">
-        <div class="brush" class="col-lg-12 col-md-12 col-sm-12" >
-            <span class="btn btn-info fa fa-paint-brush" id="drawing-line"></span>
-            <span class="btn btn-info fa fa-paint-brush" id="linepattern-brush"></span>
-            <span class="btn btn-info fa fa-paint-brush" id="lineshadow-brush"></span>
-        </div> <!--close brush-->
+      <a href="#" class="btn btn-sq-xs "><i class="fa fa-minus fa-2x" id="drawing-straightLine"></i></a>
+      <a href="#" class="btn btn-sq-xs "><i class="fa fa-eraser fa-2x" id="eraser"></i></a>
+      <a href="#" class="btn btn-sq-xs "><i class="fa fa-arrows fa-2x" id="selectors"></i></a>
 
-        <div class="shape" class="col-lg-12 col-md-12 col-sm-12" >
-            <span class="btn btn-info fa fa-square-o" id="drawing-rectangle"></span>
-            <span class="btn btn-info fa fa-circle-o" id="drawing-ellipse"></span>
-            <span class="btn btn-info fa fa-industry" id="drawing-polygon"></span>
-        </div> <!--close shape-->
+      <a href="#" class="btn btn-sq-xs "><i class="fa fa-object-ungroup fa-2x" id="drawing-rectangle"></i></a>
+      <a href="#" class="btn btn-sq-xs "><i class="fa fa-bookmark-o fa-2x" id="drawing-polygon"></i></a>
+      <a href="#" class="btn btn-sq-xs "><i class="fa fa-circle-thin fa-2x" id="drawing-ellipse"></i></a>
 
-        <div class="drawing-tools" class="col-lg-12 col-md-12 col-sm-12" >
-            <span class="btn btn-info fa fa-pencil" id="drawing-straightLine"></span>
-            <span class="btn btn-info fa fa-eraser" id="eraser"></span>
-            <span class="btn btn-info fa fa-file" id="background-fill"></span>
-         </div> <!--close drawing-tools-->
+      <a href="#" class="btn btn-sq-xs "><i class="fa fa-arrow-left fa-2x" id="previous"></i></a>
+      <a href="#" class="btn btn-sq-xs "><i class="fa fa-trash-o fa-2x" id="clear-all"></i></a>
+      <a href="#" class="btn btn-sq-xs "><i class="fa fa-arrow-right fa-2x" id="next"></i></a>
 
-         <div class="cursor" class="col-lg-12 col-md-12 col-sm-12" >
-            <span class="btn btn-info fa fa-arrow-left" id="previous"></span>
-            <span class="btn btn-info fa fa-arrows" id="selectors"></span>
-            <span class="btn btn-info fa fa-arrow-right" id="next"></span>
-        </div> <!--close cursor-->
+      <a href="#" class="btn btn-sq-xs "><i class="fa fa-bitbucket fa-2x" id="background-fill"></i></a>
+      <a href="#" class="btn btn-sq-xs " id="downLoad" download="image.jpeg"><i class="fa fa-download fa-2x" ></i></a>
+      <a href="#" class="btn btn-sq-xs "><i class="fa fa-picture-o fa-2x" id="openFile"></i></a>
+      <input id="file" type="file" accept=".jpg, .jpeg, .png"/>
+    </div>
 
-        <div class="tools" class="col-lg-12 col-md-12 col-sm-12" >
-            <span class="btn btn-info fa fa-trash-o" id="clear-all"></span>
-            <span><a class="btn btn-info fa fa-download" href ="#" id="downLoad" download="image.jpeg"></a></span>
-            <span class="btn btn-info fa fa-picture-o" id="openFile"></span>
-            <input id="file" type="file" accept=".jpg, .jpeg, .png"/>
-        </div> <!--close tools-->
+    <div class="slidecontainer">
 
-        <div class="slidecontainer">
-                <input type="range" min="1" max="50" value="5" class="slider" id="pixel">
-                <p>Pixel:
-                    <span id="displayVal1"></span>
-                </p>
-        
-                <input type="range" min="1" max="50" value="5" class="slider" id="blur">
-                <p>Blur:
-                    <span id="displayVal2"></span>
-                </p>
-            </div> <!--close slide container-->
 
-       
+      <input type="range" min="1" max="50" value="5" class="slider" id="pixel">
+      <p>Pixel:
+        <span id="displayVal1"></span>
+      </p>
+
+      <input type="range" min="1" max="50" value="5" class="slider" id="blur">
+      <p>Blur:
+        <span id="displayVal2"></span>
+      </p>
     </div>
 
 
-
-    <div class="col-lg-12 col-md-12 col-sm-12" id="canvas-container">
-        <canvas id="canvas-real" class="canvas" width='900px' height='600px'></canvas>
-        <canvas id="canvas-draft" class="canvas" width='900px' height='600px'></canvas>
-    </div>
+    <label for="color-input" id="color-label" style="background-color: red"></label>
+    <input type="checkbox" id="color-input" checked></input>
 
     <div id="color-picker">
-            <canvas id="color-block" height="150" width="150"></canvas>
-            <canvas id="color-strip" height="150" width="30"></canvas>
-        </div>
+      <canvas id="color-block" height="150" width="120"></canvas>
+      <canvas id="color-strip" height="150" width="20"></canvas>
+    </div>
+
+    <!--      <input id="file" type="file" accept=".jpg, .jpeg, .png"/> --->
+  </div>
 
 
-    <script type='text/javascript' src="canvas-common.js"></script>
-    <script type='text/javascript' src="drawing-line.js"></script>
-    <script type='text/javascript' src="drawing-rectangle.js"></script>
-    <script type='text/javascript' src="drawing-straightLine.js"></script>
-    <script type='text/javascript' src="drawing-ellipse.js"></script>
-    <script type='text/javascript' src="drawing-polygon.js"></script>
-    <script type='text/javascript' src="snapshot.js"></script>
-    <script type='text/javascript' src="eraser.js"></script>
-    <script type='text/javascript' src="color-picker.js"></script>
-    <script type='text/javascript' src="fontsizeGet.js"></script>
-    <script type='text/javascript' src="selectors.js"></script>
-    <script type='text/javascript' src="background-fill.js"></script>
-    <script type='text/javascript' src="upload-download.js"></script>
+  <canvas id="canvas-real" class="canvas" width='900px' height='500px'></canvas>
+  <canvas id="canvas-draft" class="canvas" width='900px' height='500px'></canvas>
 
-    <script type='text/javascript'>
-        // default to be rectangle feature
-        currentFunction = new DrawingLine(contextReal, contextDraft);
 
-        $('#drawing-rectangle').click(() => {
-            currentFunction = new DrawingRectangle(contextReal, contextDraft);
-        });
-        $('#drawing-line').click(() => {
-            currentFunction = new DrawingLine(contextReal, contextDraft);
-        });
-        $('#drawing-straightLine').click(() => {
-            currentFunction = new DrawingStraightLine(contextReal, contextDraft);
-        });
-        $('#drawing-ellipse').click(() => {
-            currentFunction = new DrawingEllipse(contextReal, contextDraft);
-        });
-        $('#drawing-polygon').click(() => {
-            currentFunction = new DrawingPolygon(contextReal, contextDraft);
-        });
-        $('#eraser').click(() => {
-            currentFunction = new Eraser(contextReal, contextDraft);
-        });
-        $('#selectors').click(() => {
-            currentFunction = new Selectors(contextReal, contextDraft);
-        });
-        $('#background-fill').click(() => {
-            currentFunction = new backgroundFill(contextReal, contextDraft);
-        });
-        $('#openFile').click(() => {
-            currentFunction = new triggerClick();
-        });
-        $('#linepattern-brush').click(() => {
-            currentFunction = new LinePatternBrush(contextReal);
-            $('#pixel').prop('min','10');
-            $('#displayVal1').html($('#pixel').val());
-        });
-        $('#lineshadow-brush').click(() => {
-            currentFunction = new LineShadowBrush(contextReal, contextDraft);
-        });
 
-        $('#downLoad').on('click', () => {
-            document.getElementById("downLoad").download = "image.jpeg";
-            document.getElementById("downLoad").href = document.getElementById("canvas-real").toDataURL("image/jpeg");
-        });
+  <script type='text/javascript' src="canvas-common.js"></script>
+  <script type='text/javascript' src="drawing-line.js"></script>
 
-        // Control the snapshot
-        $('#previous').click(() => {
-            Previous();
-        });
-        $('#next').click(() => {
-            Next();
-        });
+  <script type='text/javascript' src="drawing-rectangle.js"></script>
+  <script type='text/javascript' src="drawing-straightLine.js"></script>
+  <script type='text/javascript' src="drawing-ellipse.js"></script>
+  <script type='text/javascript' src="drawing-polygon.js"></script>
+  <script type='text/javascript' src="snapshot.js"></script>
+  <script type='text/javascript' src="eraser.js"></script>
+  <script type='text/javascript' src="color-picker.js"></script>
+  <script type='text/javascript' src="fontsizeGet.js"></script>
+  <script type='text/javascript' src="selectors.js"></script>
+  <script type='text/javascript' src="background-fill.js"></script>
+  <script type='text/javascript' src="upload-download.js"></script>
 
-        // clear all
-        $('#clear-all').click(() => {
-          contextReal.clearRect(0, 0, canvasReal.width, canvasReal.height);
-          contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
-          currentFunction.reset();
-          snapshot[0] = contextReal.getImageData(0,0, canvasReal.width, canvasReal.height);
-          index = 0;
-          snapshot.length = 1;
-        });
-
-    </script>
+  <script type='text/javascript'>
+    // default to be rectangle feature
+    currentFunction = new DrawingLine(contextReal, contextDraft);
+    $('#drawing-rectangle').click(() => {
+      currentFunction = new DrawingRectangle(contextReal, contextDraft);
+    });
+    $('#drawing-line').click(() => {
+      currentFunction = new DrawingLine(contextReal, contextDraft);
+    });
+    $('#drawing-straightLine').click(() => {
+      currentFunction = new DrawingStraightLine(contextReal, contextDraft);
+    });
+    $('#drawing-ellipse').click(() => {
+      currentFunction = new DrawingEllipse(contextReal, contextDraft);
+    });
+    $('#drawing-polygon').click(() => {
+      currentFunction = new DrawingPolygon(contextReal, contextDraft);
+    });
+    $('#eraser').click(() => {
+      currentFunction = new Eraser(contextReal, contextDraft);
+    });
+    $('#selectors').click(() => {
+      currentFunction = new Selectors(contextReal, contextDraft);
+    });
+    $('#background-fill').click(() => {
+      currentFunction = new backgroundFill(contextReal, contextDraft);
+    });
+    $('#openFile').click(() => {
+      currentFunction = new triggerClick();
+    });
+    $('#linepattern-brush').click(() => {
+      currentFunction = new LinePatternBrush(contextReal);
+      $('#pixel').prop('min', '10');
+      $('#displayVal1').html($('#pixel').val());
+    });
+    $('#lineshadow-brush').click(() => {
+      currentFunction = new LineShadowBrush(contextReal, contextDraft);
+    });
+    $('#downLoad').on('click', () => {
+      document.getElementById("downLoad").download = "image.jpeg";
+      document.getElementById("downLoad").href = document.getElementById("canvas-real").toDataURL("image/jpeg");
+    });
+    // Control the snapshot
+    $('#previous').click(() => {
+      Previous();
+    });
+    $('#next').click(() => {
+      Next();
+    });
+    // clear all
+    $('#clear-all').click(() => {
+      contextReal.clearRect(0, 0, canvasReal.width, canvasReal.height);
+      contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
+      currentFunction.reset();
+      snapshot[0] = contextReal.getImageData(0, 0, canvasReal.width, canvasReal.height);
+      index = 0;
+      snapshot.length = 1;
+    });
+  </script>
 
 </body>
 
