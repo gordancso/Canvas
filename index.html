@@ -9,7 +9,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   <script src="https://hammerjs.github.io/dist/hammer.js"></script>
-
+  <script src="nouislider.min.js"></script>
+  <script src="wNumb.js"></script>
+  <link href="nouislider.min.css" rel="stylesheet">
   <link href="main.css" rel="stylesheet" type='text/css'>
 </head>
 
@@ -39,20 +41,12 @@
       <input id="file" type="file" accept=".jpg, .jpeg, .png"/>
     </div>
 
-    <div class="slidecontainer">
-
-
-      <input type="range" min="1" max="50" value="5" class="slider" id="pixel">
+    <div class="sliderPx">
+  	  <div class="slider" id="pixel"></div>
       <p>Pixel:
         <span id="displayVal1"></span>
       </p>
-
-      <input type="range" min="1" max="50" value="5" class="slider" id="blur">
-      <p>Blur:
-        <span id="displayVal2"></span>
-      </p>
     </div>
-
 
     <label for="color-input" id="color-label" style="background-color: red"></label>
     <input type="checkbox" id="color-input" checked></input>
@@ -73,7 +67,6 @@
 
   <script type='text/javascript' src="canvas-common.js"></script>
   <script type='text/javascript' src="drawing-line.js"></script>
-
   <script type='text/javascript' src="drawing-rectangle.js"></script>
   <script type='text/javascript' src="drawing-straightLine.js"></script>
   <script type='text/javascript' src="drawing-ellipse.js"></script>
@@ -83,10 +76,15 @@
   <script type='text/javascript' src="color-picker.js"></script>
   <script type='text/javascript' src="fontsizeGet.js"></script>
   <script type='text/javascript' src="selectors.js"></script>
-  <script type='text/javascript' src="background-fill.js"></script>
+<!--  <script type='text/javascript' src="background-fill.js"></script> --->
   <script type='text/javascript' src="upload-download.js"></script>
 
+
+
+
+
   <script type='text/javascript'>
+    let backgroundColortest
     // default to be rectangle feature
     currentFunction = new DrawingLine(contextReal, contextDraft);
     $('#drawing-rectangle').click(() => {
@@ -111,7 +109,11 @@
       currentFunction = new Selectors(contextReal, contextDraft);
     });
     $('#background-fill').click(() => {
-      currentFunction = new backgroundFill(contextReal, contextDraft);
+      //$('#canvas-real').css('backgroundColor', rgbaColor);
+      contextReal.fillStyle = rgbaColor;
+      contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
+      backgroundColortest = rgbaColor;
+//      currentFunction = new backgroundFill(contextReal, contextDraft);
     });
     $('#openFile').click(() => {
       currentFunction = new triggerClick();

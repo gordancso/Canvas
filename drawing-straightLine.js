@@ -95,6 +95,7 @@ class DrawingStraightLine extends PaintFunction {
         this.draft = false;
         this.capture();
         this.reset();
+        console.log(slider.value)
     }
 
     // Internal function
@@ -174,5 +175,6 @@ class DrawingStraightLine extends PaintFunction {
         this.firstClick = true;
         this.clickCP = { startpoint: false, endpoint: false };
         this.clickLine = false;
+        this.contextReal.lineWidth = this.contextDraft.lineWidth = slider.value;
     }
 }

@@ -30,9 +30,21 @@ body{
 
 
 .btn-sq-xs {
-  width: 48px !important;
-  height: 48px !important;
+  width: 48px;
+  height: 48px;
   padding: 6px;
+}
+
+
+
+.sliderPx {
+  width: 150px;
+  margin: 20 auto;
+}
+
+.sliderPx p {
+  text-align: center;
+  margin: 5px
 }
 
 /* ------------canvas styling------------- */
@@ -41,6 +53,7 @@ body{
   border: 1px black dotted;
   position: absolute;
   left: 200px;
+  background-color: transparent;
 }
 
 #canvas-draft {
@@ -69,12 +82,14 @@ h2 {
   font-family: 'Open Sans';
 }
 
+
 #color-input {
   display: none;
+
 }
 
 #color-label {
-  margin-left: 15px;
+  margin-left: 75px;
   height: 30px;
   width: 50px;
 }
@@ -85,6 +100,7 @@ h2 {
 
 #color-picker {
   position: relative;
+  margin: auto;
   background-color: white;
   height: 160px;
   width: 160px;

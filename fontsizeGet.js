@@ -1,15 +1,18 @@
-var slider = document.getElementById("pixel");
+var slider = document.getElementById('pixel');
 var output = document.getElementById("displayVal1");
-output.innerHTML = slider.value;
-
-slider.oninput = function() {
-  output.innerHTML = this.value;
-}
-
-var blur = document.getElementById("blur");
-var output2 = document.getElementById("displayVal2");
-output2.innerHTML = blur.value;
-
-blur.oninput = function() {
-  output2.innerHTML = this.value;
-}
+noUiSlider.create(slider, {
+  start: 5,
+  step: 1,
+  connect: true,
+  range: {
+    'min': 1,
+    'max': 50
+  },
+  format: wNumb({
+      decimals: 0,
+    })
+});
+pixel.noUiSlider.on('update', function( values, handle ){
+  output.innerHTML = values[handle];
+});
+output.innerHTML = slider.noUiSlider.get()

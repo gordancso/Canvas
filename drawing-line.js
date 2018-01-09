@@ -4,13 +4,14 @@ class DrawingLine extends PaintFunction {
         this.context = contextReal;
         this.context.strokeStyle = rgbaColor;
         this.context.lineJoin = "round";
-        this.context.lineWidth = slider.value;
+        this.context.lineWidth = slider.noUiSlider.get();
+
     }
 
     onMouseDown(coord, event) {
         this.context.strokeStyle = rgbaColor;
         this.context.lineJoin = this.context.lineCap = "round";
-        this.context.lineWidth = slider.value;
+        this.context.lineWidth = slider.noUiSlider.get();
         this.context.beginPath();
         this.context.moveTo(coord[0], coord[1]);
     }
@@ -49,7 +50,7 @@ class LinePatternBrush extends PaintFunction {
     onMouseDown(coord, event) {
         this.context.strokeStyle = this.getPattern();
         this.context.lineJoin = this.context.lineCap = "round";
-        this.context.lineWidth = slider.value;
+        this.context.lineWidth = slider.noUiSlider.get();
         this.context.beginPath();
         this.context.moveTo(coord[0], coord[1]);
     }
