@@ -29,10 +29,12 @@ class PaintFunction {
 
 function desktopMode() {
   $('#canvas-draft').mousedown(function(e) {
+    
     let mouseX = e.pageX - this.offsetLeft;
     let mouseY = e.pageY - this.offsetTop;
     currentFunction.onMouseDown([mouseX, mouseY], e);
     dragging = true;
+    console.log(mouseX,mouseY);
   });
 
   $('#canvas-draft').mousemove(function(e) {

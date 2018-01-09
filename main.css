@@ -35,8 +35,6 @@ body{
   padding: 6px;
 }
 
-
-
 .sliderPx {
   width: 150px;
   margin: 20 auto;
@@ -52,8 +50,6 @@ body{
 .canvas {
   border: 1px black dotted;
   position: absolute;
-  left: 200px;
-  background-color: transparent;
 }
 
 #canvas-draft {
@@ -61,10 +57,7 @@ body{
 }
 
 #canvas-container {
-  height: 700px;
-  width: 700px;
   position: absolute;
-  left:200px
 }
 
 /* -------------Color picker------------- */
@@ -102,8 +95,8 @@ h2 {
   position: relative;
   margin: auto;
   background-color: white;
-  height: 160px;
-  width: 160px;
+  height: 145px;
+  width: 140px;
   border: solid 1px #ccc;
   opacity: 0;
   padding: 5px;
@@ -111,4 +104,26 @@ h2 {
 
 canvas:hover {
   cursor: crosshair;
+}
+
+.box1, .box2{
+  width: 100%;
+  display: inline-block;
+}
+
+@media (max-width: 576px){
+  .sliderPx{
+    margin: 0;
+    margin-left: 30px;
+    display: inline-block;
+  }
+  .box1{
+    width:60%;
+  }
+  .box2{
+    position: fixed;
+    right: 50px;
+    top: 15px;
+    width: 30%;
+  }
 }
