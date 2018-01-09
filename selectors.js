@@ -1,217 +1,107 @@
 class Selectors extends PaintFunction {
-    constructor(contextReal, contextDraft) {
-        super();
-        this.contextReal = contextReal;
-        this.contextDraft = contextDraft;
-// condition
-        this.mousedown = false;
-// define origin
-        this.clickedArea = {box: -1, pos:'o'};
-// dummy
-        this.x1 = -1;
-        this.y1 = -1;
-        this.x2 = -1;
-        this.y2 = -1;
-// to store coordinates
-        this.boxes = [];
-        this.previousX = -1;
-        this.previousY = -1;
-// temp box to store coord.
-        this.tmpBox = null;
+  constructor(contextReal, contextDraft) {
+    super();
+    this.contextReal = contextReal;
+    this.contextDraft = contextDraft;
+    this.reset();
+  }
 
-        this.lineOffset = 4;
-        this.anchrSize = 4;
+  onMouseDown(coord, event) {
+    if (this.firstClick) {
+      this.origX = coord[0];
+      this.origY = coord[1];
+      this.firstClick = false;
     }
+    this.selected = this.selectShape(coord, 20);
+    this.previousCoord = coord;
+  }
 
-    onMouseDown(coord, event) {
-// dummy store for mousedown
-      this.mousedown = true;
-      this.clickedArea = this.findCurrentArea(event.offsetX, event.offsetY)
-      this.x1 = event.offsetX;
-      this.y1 = event.offsetY;
-      this.x2 = event.offsetX;
-      this.y2 = event.offsetY;
-//      console.log("mouseDown: " + this.x1 + " " + this.y1  + " " + this.x2 + " "+ this.y2)
-      this.previousX = event.offsetX;
-      this.previousY = event.offsetY;
-      console.log(this.previousX + " " + this.previousY)
+  onMouseMove(coord, event) { }
 
-    }
+  onMouseUp(coord, event) {
+    if (this.firstUp) {
+      this.finalX = this.max(coord[0], this.origX);
+      this.finalY = this.max(coord[1], this.origY);
 
-    onMouseMove(coord, event) {
-      this.previousX = event.offsetX;
-      this.previousY = event.offsetY;
-      console.log(this.previousX + " " + this.previousY)
-      if (this.mousedown && this.clickedArea.box == -1) {
-        this.x2 = event.offsetX;
-        this.y2 = event.offsetY;
-        this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
-        this.redraw();
-      }
-      else if (this.mousedown && this.clickedArea.box != -1) {
-        this.x2 = event.offsetX;
-        this.y2 = event.offsetY;
-        this.xOffset = this.x2 - this.x1;
-        this.yOffset = this.y2 - this.y1;
-        this.x1 = this.x2;
-        this.y1 = this.y2;
+      this.origX = this.min(coord[0], this.origX);
+      this.origY = this.min(coord[1], this.origY);
 
-        if (this.clickedArea.pos == 'i'  ||
-            this.clickedArea.pos == 'tl' ||
-            this.clickedArea.pos == 'bl') {
-          this.boxes[this.clickedArea.box].x1 += this.xOffset;
-        }
-        if (this.clickedArea.pos == 'i'  ||
-            this.clickedArea.pos == 'tl' ||
-            this.clickedArea.pos == 'tr') {
-          this.boxes[this.clickedArea.box].y1 += this.yOffset;
-        }
-        if (this.clickedArea.pos == 'i'  ||
-            this.clickedArea.pos == 'tr' ||
-            this.clickedArea.pos == 'br') {
-          this.boxes[this.clickedArea.box].x2 += this.xOffset;
-        }
-        if (this.clickedArea.pos == 'i'  ||
-            this.clickedArea.pos == 'bl' ||
-            this.clickedArea.pos == 'br') {
-          this.boxes[this.clickedArea.box].y2 += this.yOffset;
-        }
-        this.redraw();
-        this.contextDraft.clearRect(0,0,canvasDraft.width, canvasDraft.height)
+      this.width = this.finalX - this.origX;
+      this.height = this.finalY - this.origY;
 
-        console.log("fuck")
-      }
-
-    }
-
-
-    onMouseUp(coord, event) {
-      console.log(this.boxes);
-      console.log(this.tmpBox);
-      this.boxes.push(this.tmpBox)
-      this.mousedown = false
-      this.previousX = event.offsetX;
-      this.previousY = event.offsetY;
-      console.log("this.boxes" + this.boxes[0].x1 + this.boxes[0].y1);
-      this.imgdt = this.contextReal.getImageData(this.tmpBox.x1, this.tmpBox.y1, this.tmpBox.x2-this.tmpBox.x1, this.tmpBox.y2-this.tmpBox.y1)
-      console.log("true")
-      console.log(this.previousX + " " + this.previousY)
-    }
-
-    onDragging(coord, event) { }
-
-    onMouseLeave(coord, event) { }
-
-    onMouseEnter(coord, event) { }
-
-    // draw the shape without control points in real canvas
-    onDoubleClick(coord, event) {
-        this.contextReal.clearRect(this.tmpBox.x1,this.tmpBox.y1, this.tmpBox.x2-this.tmpBox.x1, this.tmpBox.y2-this.tmpBox.y1)
-        console.log(this.imgdt);
-        this.contextReal.putImageData(this.imgdt, 100, 100)
-        this.reset();
-    }
-
-//function
-    redraw(){
-      console.log(this.tmpBox)
+      this.image = this.contextReal.getImageData(this.origX, this.origY, this.width, this.height);
+      this.contextReal.clearRect(this.origX, this.origY, this.width, this.height);
       this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
-      this.contextDraft.putImageData(this.tmpBox.x1,this.tmpBox.y1, this.tmpBox.x2-this.tmpBox.x1, this.tmpBox.y2-this.tmpBox.y1)
-      this.contextDraft.beginPath();
-      for (var i = 0; i < this.boxes.length; i++) {
-        this.createCP(this.boxes[i], this.contextDraft);
-      }
-      console.log(this.boxes)
-      if (this.clickedArea.box == -1) {
-        this.tmpBox = this.newBox(this.x1, this.y1, this.x2, this.y2);
-        if (this.tmpBox != null) {
-          this.createCP(this.tmpBox, this.contextDraft);
-        }
-      }
-
+      this.contextDraft.putImageData(this.image, this.origX, this.origY);
+      this.contextDraft.strokeRect(this.origX, this.origY, this.width, this.height);
+      this.firstUp = false;
     }
+  }
 
-
-    createCP(box, context){
-      this.xCenter = box.x1 + (box.x2 - box.x1) / 2;
-      this.yCenter = box.y1 + (box.y2 - box.y1) / 2;
-
-      context.strokeStyle = box.lineWidth;
-      context.fillStyle = box.color;
-
-      context.rect(box.x1, box.y1, (box.x2 - box.x1), (box.y2 - box.y1));
-      context.setLineDash([3]);
-      context.stroke();
-
-      context.fillRect(box.x1 - this.anchrSize, box.y1 - this.anchrSize, 2 * this.anchrSize, 2 * this.anchrSize);
-      context.fillRect(box.x1 - this.anchrSize, box.y2 - this.anchrSize, 2 * this.anchrSize, 2 * this.anchrSize);
-      context.fillRect(this.xCenter - this.anchrSize, this.yCenter - this.anchrSize, 2 * this.anchrSize, 2 * this.anchrSize);
-      context.fillRect(box.x2 - this.anchrSize, box.y1 - this.anchrSize, 2 * this.anchrSize, 2 * this.anchrSize);
-      context.fillRect(box.x2 - this.anchrSize, box.y2 - this.anchrSize, 2 * this.anchrSize, 2 * this.anchrSize);
+  onDragging(coord, event) {
+    this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
+    if (this.selected) {
+      this.origX = this.origX + (coord[0] - this.previousCoord[0]);
+      this.origY = this.origY + (coord[1] - this.previousCoord[1]);
+      this.finalX = this.finalX + (coord[0] - this.previousCoord[0]);
+      this.finalY = this.finalY + (coord[1] - this.previousCoord[1]);
+      this.contextDraft.putImageData(this.image, this.origX, this.origY);
     }
-
-
-    newBox(x1, y1, x2, y2) {
-      this.boxX1 = x1 < x2 ? x1 : x2;
-      this.boxY1 = y1 < y2 ? y1 : y2;
-      this.boxX2 = x1 > x2 ? x1 : x2;
-      this.boxY2 = y1 > y2 ? y1 : y2;
-      if (this.boxX2 - this.boxX1 > this.lineOffset * 2 && this.boxY2 - this.boxY1 > this.lineOffset * 2) {
-        return {x1: this.boxX1,
-                y1: this.boxY1,
-                x2: this.boxX2,
-                y2: this.boxY2,
-                lineWidth: 0.5,
-                color: "#000000"};
-      } else {
-        return null;
-      }
+    else {
+      this.finalX = coord[0];
+      this.finalY = coord[1];
+      this.width = this.finalX - this.origX;
+      this.height = this.finalY - this.origY;
     }
+    
+    this.contextDraft.strokeRect(this.origX, this.origY, this.width, this.height);
+    this.previousCoord = coord;
+  }
 
+  onMouseLeave(coord, event) { 
+    this.finished = true;
+  }
 
-    findCurrentArea(x, y) {
-      for (var i = 0; i < this.boxes.length; i++) {
-        var box = this.boxes[i];
-        this.xCenter = box.x1 + (box.x2 - box.x1) / 2;
-        this.yCenter = box.y1 + (box.y2 - box.y1) / 2;
-        if (box.x1 - this.lineOffset <  x && x < box.x1 + this.lineOffset) {
-          if (box.y1 - this.lineOffset <  y && y < box.y1 + this.lineOffset) {
-            return {box: i, pos:'tl'};
-          } else if (box.y2 - this.lineOffset <  y && y < box.y2 + this.lineOffset) {
-            return {box: i, pos:'bl'};
-          }
-        } else if (box.x2 - this.lineOffset < x && x < box.x2 + this.lineOffset) {
-          if (box.y1 - this.lineOffset <  y && y < box.y1 + this.lineOffset) {
-            return {box: i, pos:'tr'};
-          } else if (box.y2 - this.lineOffset <  y && y < box.y2 + this.lineOffset) {
-            return {box: i, pos:'br'};
-          }
-        } else if (this.xCenter - this.lineOffset <  x && x < this.xCenter + this.lineOffset) {
-          if (box.y1 - this.lineOffset <  y && y < box.y2 + this.lineOffset) {
-            return {box: i, pos:'i'};
-          }
-        } else if (box.x1 - this.lineOffset <  x && x < box.x2 + this.lineOffset) {
-          if (box.y1 - this.lineOffset <  y && y < box.y2 + this.lineOffset) {
-            return {box: i, pos:'i'};
-          }
-        }
-      }
-      return {box: -1, pos:'o'};
+  onMouseEnter(coord, event) { }
+
+  onDoubleClick(coord, event) {
+    this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
+    this.contextDraft.putImageData(this.image, this.origX, this.origY);
+    this.contextReal.drawImage(canvasDraft, 0, 0);
+    this.capture();
+    this.reset();
+  }
+
+  selectShape(coord, tolerance) {
+    let xmin, xmax, ymin, ymax;
+    xmin = this.min(this.origX,this.finalX);
+    xmax = this.max(this.origX,this.finalX);
+    ymin = this.min(this.origY,this.finalY);
+    ymax = this.max(this.origY,this.finalY);
+
+    if (coord[0] > xmin && coord[0] < xmax && coord[1] > ymin && coord[1] < ymax) {
+      return true;
     }
+    else
+      return false;
+  }
 
-    reset(){
-// reset everything after double click
-      this.mousedown = false;
-      this.clickedArea = {box: -1, pos:'o'};
-      this.x1 = -1;
-      this.y1 = -1;
-      this.x2 = -1;
-      this.y2 = -1;
-      this.boxes = [];
-      this.tmpBox = null;
-      this.lineOffset = 4;
-      this.anchrSize = 4;
-    }
+  max(value1, value2) {
+    if (value1 > value2)
+      return value1;
+    else
+      return value2;
+  }
 
+  min(value1, value2) {
+    if (value1 < value2)
+      return value1;
+    else
+      return value2;
+  }
 
+  reset() {
+    this.firstClick = true;
+    this.firstUp = true;
+  }
 }
