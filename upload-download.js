@@ -1,7 +1,7 @@
 
 function triggerClick (){
     document.getElementById('file').click();
-   
+
 }
 
 document.getElementById('file').addEventListener('change',function(e){
@@ -13,7 +13,7 @@ document.getElementById('file').addEventListener('change',function(e){
 
     image.addEventListener('load',function(){
         this.contextReal = contextReal;
-        this.contextDraft = contextDraft;       
+        this.contextDraft = contextDraft;
         imageWidth = image.naturalWidth;
         imageHeight = image.naturalHeight;
         newImageWidth = imageWidth;
@@ -45,8 +45,3 @@ document.getElementById('file').addEventListener('change',function(e){
 });
 
 /*==================== End upload ========================== */
-
-$('#downLoad').on('click', () =>{
-    document.getElementById("downLoad").download = "image.jpg";
-    document.getElementById("downLoad").href = document.getElementById("canvas").toDataURL("image/jpeg");
-    });
