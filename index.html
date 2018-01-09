@@ -47,7 +47,8 @@
         <span class="btn btn-info fa fa-paint-brush" id="eraser">Eraser</span>
         <span class="btn btn-info fa fa-paint-brush" id="linepattern-brush">Line Pattern Brush</span>
         <span class="btn btn-info fa fa-paint-brush" id="lineshadow-brush">Line Shadow Brush</span>
-        <button id="background-fill" type="button" class="btn btn-primary">Background</button>
+        <span class="btn btn-info fa fa-paint-brush" id="testing">Testing</span>
+        <button id="background-fill" type="button" class="btn btn-primary">Fill Canvas</button>
         <button id="openFile" type="button" class="btn btn-primary">Upload</button>
         <input id="file" type="file" accept=".png, .jpg, jpeg" />
 
@@ -114,6 +115,11 @@
         });
         $('#lineshadow-brush').click(() => {
             currentFunction = new LineShadowBrush(contextReal, contextDraft);
+        });
+        $('#testing').click(() => {
+          contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
+          contextDraft.strokeRect(100,100,300,300);
+          contextReal.drawImage(canvasDraft, 0, 0);
         });
        
 
