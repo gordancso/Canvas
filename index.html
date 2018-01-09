@@ -18,52 +18,67 @@
 </head>
 
 <body>
-    <div id="canvas-container">
-        <canvas id="canvas-real" class="canvas" width='900px' height='500px'></canvas>
-        <canvas id="canvas-draft" class="canvas" width='900px' height='500px'></canvas>
+
+
+    <div id="control-board-wrapper" class="col-lg-12 col-md-12 col-sm-12">
+        <div class="brush" class="col-lg-12 col-md-12 col-sm-12" >
+            <span class="btn btn-info fa fa-paint-brush" id="drawing-line"></span>
+            <span class="btn btn-info fa fa-paint-brush" id="linepattern-brush"></span>
+            <span class="btn btn-info fa fa-paint-brush" id="lineshadow-brush"></span>
+        </div> <!--close brush-->
+
+        <div class="shape" class="col-lg-12 col-md-12 col-sm-12" >
+            <span class="btn btn-info fa fa-square-o" id="drawing-rectangle"></span>
+            <span class="btn btn-info fa fa-circle-o" id="drawing-ellipse"></span>
+            <span class="btn btn-info fa fa-industry" id="drawing-polygon"></span>
+        </div> <!--close shape-->
+
+        <div class="drawing-tools" class="col-lg-12 col-md-12 col-sm-12" >
+            <span class="btn btn-info fa fa-pencil" id="drawing-straightLine"></span>
+            <span class="btn btn-info fa fa-eraser" id="eraser"></span>
+            <span class="btn btn-info fa fa-file" id="background-fill"></span>
+         </div> <!--close drawing-tools-->
+
+         <div class="cursor" class="col-lg-12 col-md-12 col-sm-12" >
+            <span class="btn btn-info fa fa-arrow-left" id="previous"></span>
+            <span class="btn btn-info fa fa-arrows" id="selectors"></span>
+            <span class="btn btn-info fa fa-arrow-right" id="next"></span>
+        </div> <!--close cursor-->
+
+        <div class="tools" class="col-lg-12 col-md-12 col-sm-12" >
+            <span class="btn btn-info fa fa-trash-o" id="clear-all"></span>
+            <span><a class="btn btn-info fa fa-download" href ="#" id="downLoad" download="image.jpeg"></a></span>
+            <span class="btn btn-info fa fa-picture-o" id="openFile"></span>
+            <input id="file" type="file" accept=".jpg, .jpeg, .png"/>
+        </div> <!--close tools-->
+
+        <div class="slidecontainer">
+                <input type="range" min="1" max="50" value="5" class="slider" id="pixel">
+                <p>Pixel:
+                    <span id="displayVal1"></span>
+                </p>
+        
+                <input type="range" min="1" max="50" value="5" class="slider" id="blur">
+                <p>Blur:
+                    <span id="displayVal2"></span>
+                </p>
+            </div> <!--close slide container-->
+
+       
     </div>
 
-    <div class="slidecontainer">
-        <input type="range" min="1" max="50" value="5" class="slider" id="pixel">
-        <p>Pixel:
-            <span id="displayVal1"></span>
-        </p>
 
-        <input type="range" min="1" max="50" value="5" class="slider" id="blur">
-        <p>Blur:
-            <span id="displayVal2"></span>
-        </p>
+
+    <div class="col-lg-12 col-md-12 col-sm-12" id="canvas-container">
+        <canvas id="canvas-real" class="canvas" width='900px' height='600px'></canvas>
+        <canvas id="canvas-draft" class="canvas" width='900px' height='600px'></canvas>
     </div>
-
-    <<div class="buttons" >
-        <span class="btn btn-info fa fa-square" id="drawing-rectangle">Drawing Rectangle</span>
-        <span class="btn btn-info fa fa-paint-brush" id="drawing-line">Drawing Line</span>
-        <span class="btn btn-info fa fa-paint-brush" id="drawing-straightLine">Drawing Straight Line</span>
-        <span class="btn btn-info fa fa-paint-brush" id="drawing-ellipse">Drawing Ellipse</span>
-        <span class="btn btn-info fa fa-paint-brush" id="drawing-polygon">Drawing Polygon</span>
-        <span class="btn btn-info fa fa-paint-brush" id="previous">Previous</span>
-        <span class="btn btn-info fa fa-paint-brush" id="next">Next</span>
-        <span class="btn btn-info fa fa-paint-brush" id="selectors">Select</span>
-        <span class="btn btn-info fa fa-paint-brush" id="clear-all">Clear</span>
-        <span class="btn btn-info fa fa-paint-brush" id="eraser">Eraser</span>
-        <span class="btn btn-info fa fa-paint-brush" id="linepattern-brush">Line Pattern Brush</span>
-        <span class="btn btn-info fa fa-paint-brush" id="lineshadow-brush">Line Shadow Brush</span>
-        <button id="background-fill" type="button" class="btn btn-primary">Fill Canvas</button>
-        <button id="openFile" type="button" class="btn btn-primary">Upload</button>
-        <input id="file" type="file" accept=".png, .jpg, jpeg"/>
-        <span class="btn btn-info fa fa-paint-brush" id="openFile">Upload</span>
-        <input id="file" type="file" accept=".jpg, .jpeg, .png">
-
-        <a class="btn btn-info" href ="#" id="downLoad" download="image.jpeg">Download</a>
-    </div>
-
-    <label for="color-input" id="color-label" style="background-color: red"></label>
-    <input type="checkbox" id="color-input"></input>
 
     <div id="color-picker">
-        <canvas id="color-block" height="150" width="150"></canvas>
-        <canvas id="color-strip" height="150" width="30"></canvas>
-    </div>
+            <canvas id="color-block" height="150" width="150"></canvas>
+            <canvas id="color-strip" height="150" width="30"></canvas>
+        </div>
+
 
     <script type='text/javascript' src="canvas-common.js"></script>
     <script type='text/javascript' src="drawing-line.js"></script>

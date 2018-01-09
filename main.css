@@ -1,3 +1,32 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+#control-board-wrapper {
+  width: 240px;
+  height: 600px;
+  border: 1px solid orange;
+  position: absolute;
+
+}
+
+span {
+  width: 60px;
+  height: 60px;
+  margin: 2px;
+ 
+}
+
+#file {
+  visibility: hidden;
+}
+
+a {
+  width: 60px;
+  height: 60px;
+}
+
 /* ------------canvas styling------------- */
 
 .canvas{
@@ -11,7 +40,7 @@
 
 #canvas-container{
     height:500px;
-    position: flex;
+  position: absolute;
 }
 
 /* -------------Color picker------------- */
