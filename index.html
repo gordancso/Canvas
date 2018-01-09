@@ -13,6 +13,7 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
         crossorigin="anonymous"></script>
+    <script src="https://hammerjs.github.io/dist/hammer.js"></script>
     <link href="main.css" rel="stylesheet" type='text/css'>
 </head>
 
@@ -23,14 +24,19 @@
     </div>
 
     <div class="slidecontainer">
-        <input type="range" min="1" max="50" value="15" class="slider" id="pixel">
+        <input type="range" min="1" max="50" value="5" class="slider" id="pixel">
         <p>Pixel:
-            <span id="displayVal"></span>
+            <span id="displayVal1"></span>
+        </p>
+
+        <input type="range" min="1" max="50" value="5" class="slider" id="blur">
+        <p>Blur:
+            <span id="displayVal2"></span>
         </p>
     </div>
 
-    <div class="buttons">
-        <span class="btn btn-primary fa fa-square" id="drawing-rectangle">Drawing Rectangle</span>
+    <<div class="buttons" >
+        <span class="btn btn-info fa fa-square" id="drawing-rectangle">Drawing Rectangle</span>
         <span class="btn btn-info fa fa-paint-brush" id="drawing-line">Drawing Line</span>
         <span class="btn btn-info fa fa-paint-brush" id="drawing-straightLine">Drawing Straight Line</span>
         <span class="btn btn-info fa fa-paint-brush" id="drawing-ellipse">Drawing Ellipse</span>
@@ -40,20 +46,24 @@
         <span class="btn btn-info fa fa-paint-brush" id="selectors">Select</span>
         <span class="btn btn-info fa fa-paint-brush" id="clear-all">Clear</span>
         <span class="btn btn-info fa fa-paint-brush" id="eraser">Eraser</span>
-        <button id="background-fill" type="button" class="btn btn-primary">Background</button>
+        <span class="btn btn-info fa fa-paint-brush" id="linepattern-brush">Line Pattern Brush</span>
+        <span class="btn btn-info fa fa-paint-brush" id="lineshadow-brush">Line Shadow Brush</span>
+        <button id="background-fill" type="button" class="btn btn-primary">Fill Canvas</button>
         <button id="openFile" type="button" class="btn btn-primary">Upload</button>
-        <input id="file" type="file" accept=".png, .jpg, jpeg" />
+        <input id="file" type="file" accept=".png, .jpg, jpeg"/>
+        <span class="btn btn-info fa fa-paint-brush" id="openFile">Upload</span>
+        <input id="file" type="file" accept=".jpg, .jpeg, .png">
 
+        <a class="btn btn-info" href ="#" id="downLoad" download="image.jpeg">Download</a>
     </div>
 
     <label for="color-input" id="color-label" style="background-color: red"></label>
-    <input type="checkbox" id="color-input" checked></input>
+    <input type="checkbox" id="color-input"></input>
 
     <div id="color-picker">
         <canvas id="color-block" height="150" width="150"></canvas>
         <canvas id="color-strip" height="150" width="30"></canvas>
     </div>
-
 
     <script type='text/javascript' src="canvas-common.js"></script>
     <script type='text/javascript' src="drawing-line.js"></script>
@@ -71,7 +81,7 @@
 
     <script type='text/javascript'>
         // default to be rectangle feature
-        currentFunction = new DrawingRectangle(contextReal, contextDraft);
+        currentFunction = new DrawingLine(contextReal, contextDraft);
 
         $('#drawing-rectangle').click(() => {
             currentFunction = new DrawingRectangle(contextReal, contextDraft);
@@ -100,20 +110,36 @@
         $('#openFile').click(() => {
             currentFunction = new triggerClick();
         });
+        $('#linepattern-brush').click(() => {
+            currentFunction = new LinePatternBrush(contextReal);
+            $('#pixel').prop('min','10');
+            $('#displayVal1').html($('#pixel').val());
+        });
+        $('#lineshadow-brush').click(() => {
+            currentFunction = new LineShadowBrush(contextReal, contextDraft);
+        });
+
+        $('#downLoad').on('click', () => {
+            document.getElementById("downLoad").download = "image.jpeg";
+            document.getElementById("downLoad").href = document.getElementById("canvas-real").toDataURL("image/jpeg");
+        });
 
         // Control the snapshot
         $('#previous').click(() => {
             Previous();
         });
         $('#next').click(() => {
-            currentFunction.reset();
             Next();
         });
 
         // clear all
         $('#clear-all').click(() => {
-            contextReal.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
-            contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height)
+          contextReal.clearRect(0, 0, canvasReal.width, canvasReal.height);
+          contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
+          currentFunction.reset();
+          snapshot[0] = contextReal.getImageData(0,0, canvasReal.width, canvasReal.height);
+          index = 0;
+          snapshot.length = 1;
         });
 
     </script>

@@ -1,30 +1,16 @@
+class backgroundFill extends PaintFunction {
 
-
-class backgroundFill extends PaintFunction{
-  
-    constructor(contextReal,contextDraft){
+    constructor(contextReal) {
         super();
         this.contextReal = contextReal;
-        this.contextDraft = contextDraft;          
-        
     }
-    
-    onMouseDown(coord,event){
+
+    onMouseDown(coord, event) {
+    }
+
+    onMouseLeave() { }
+    onMouseEnter() {
         this.contextReal.fillStyle = rgbaColor;
-        //backGC = rgbaColor;
-        //this.contextDraft.fillStyle = rgbaColor;
-        this.origX = coord[0];
-        this.origY = coord[0];
-
+        this.contextReal.fillRect(0, 0, canvasReal.width, canvasReal.height);
     }
-
-   
-    onMouseLeave(){}
-    onMouseEnter(){
-    this.contextReal.fillStyle = rgbaColor;  
-    
-    //this.contextDraft.fillStyle = rgbaColor; 
-    //this.contextDraft.fillRect(0,0,canvasDraft.width,canvasDraft.height);\
-    this.contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
-}
 }
