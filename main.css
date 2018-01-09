@@ -1,17 +1,57 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body{
+    overflow:hidden;
+}
+
+/* ------------control-panel styling------------- */
+
+#control-panel {
+  width: 200px;
+  height: 100vh;
+  border: 1px solid black;
+  position: absolute;
+}
+
+.icon{
+  text-align: center;
+}
+
+.icon #file {
+  display: none;
+}
+
+#control-panel ul {
+	list-style: none;
+}
+
+
+.btn-sq-xs {
+  width: 48px !important;
+  height: 48px !important;
+  padding: 6px;
+}
+
 /* ------------canvas styling------------- */
 
-.canvas{
-    border:1px black dotted;
-    position:absolute;
+.canvas {
+  border: 1px black dotted;
+  position: absolute;
+  left: 200px;
 }
 
-#canvas-draft{
-    background-color: transparent;
+#canvas-draft {
+  background-color: transparent;
 }
 
-#canvas-container{
-    height:500px;
-    position: flex;
+#canvas-container {
+  height: 700px;
+  width: 700px;
+  position: absolute;
+  left:200px
 }
 
 /* -------------Color picker------------- */
@@ -20,6 +60,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
 h2 {
   background-color: #dbdbdb;
   margin: 0;
@@ -27,28 +68,31 @@ h2 {
   padding: 10px;
   font-family: 'Open Sans';
 }
+
 #color-input {
   display: none;
 }
+
 #color-label {
   margin-left: 15px;
-  position: absolute;
   height: 30px;
   width: 50px;
 }
-#color-input:checked ~ #color-picker {
+
+#color-input:checked~#color-picker {
   opacity: 1;
 }
+
 #color-picker {
-  position: absolute;
-  left: 70px;
+  position: relative;
   background-color: white;
   height: 160px;
-  width: 200px;
+  width: 160px;
   border: solid 1px #ccc;
   opacity: 0;
   padding: 5px;
 }
+
 canvas:hover {
   cursor: crosshair;
 }
