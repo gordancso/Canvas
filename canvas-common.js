@@ -9,6 +9,7 @@ let index = 0;
 snapshot[0] = contextReal.getImageData(0,0, canvasReal.width, canvasReal.height);
 
 $('#canvas-draft').mousedown(function (e) {
+    console.log(e.pageX,this.offsetLeft);
     let mouseX = e.pageX - this.offsetLeft;
     let mouseY = e.pageY - this.offsetTop;
     currentFunction.onMouseDown([mouseX, mouseY], e);
