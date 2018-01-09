@@ -1,32 +1,8 @@
-*{
-  margin: 0;
-  padding: 0;
-}
-
-#control-board-wrapper1 {
-  width: 900px;
-  height: 40px;
-  border: 1px solid orange;
-}
-
-#control-board-wrapper2 {
-  width: 900px;
-  height: 40px;
-  margin-top: 20px;
-  border: 1px solid orange;
-}
-
-
-
 /* ------------canvas styling------------- */
 
 .canvas{
     border:1px black dotted;
     position:absolute;
-    top:50px;
-    bottom:0px;
-    left:0px;
-    right:0px;
 }
 
 #canvas-draft{
