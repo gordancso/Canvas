@@ -3,17 +3,11 @@
   padding: 0;
 }
 
-#control-board-wrapper1 {
-  width: 900px;
-  height: 40px;
+#control-board-wrapper {
+  width: 250px;
+  height: 500px;
   border: 1px solid orange;
-}
-
-#control-board-wrapper2 {
-  width: 900px;
-  height: 40px;
-  margin-top: 20px;
-  border: 1px solid orange;
+  position: absolute;
 }
 
 
@@ -23,7 +17,7 @@
 .canvas{
     border:1px black dotted;
     position:absolute;
-    top:50px;
+    top:0px;
     bottom:0px;
     left:0px;
     right:0px;
@@ -36,8 +30,7 @@
 #canvas-container{
 
     height:500px;
-    position: flex;
-
+   
 }
 
 /* -------------Color picker------------- */

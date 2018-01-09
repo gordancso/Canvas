@@ -18,21 +18,27 @@
 
 <body>
 
-    <div id = "control-board-wrapper1" class = "col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="buttons" >
-            <span class="btn btn-info fa fa-paint-brush" id="previous">Previous</span>
-            <span class="btn btn-info fa fa-paint-brush" id="next">Next</span>
-            <span class="btn btn-info fa fa-paint-brush" id="selectors">Select</span>
-            <span class="btn btn-info fa fa-paint-brush" id="clear-all">Clear</span>
-            <span class="btn btn-info fa fa-paint-brush" id="eraser">Eraser</span>
-            <span class="btn btn-info fa fa-paint-brush" id="background-fill">Background</span>
+    <div id="control-board-wrapper" class="col-lg-12 col-md-12 col-sm-12">
+        <div id="control-board1" class="col-lg-12 col-md-12 col-sm-12">
+            <div id="brush-stroke" class="col-lg-12 col-md-12 col-sm-12">
+                <div id="brush1" class="col-lg-4 col-md-4 col-sm-4">
+                        <button type="button" class="btn btn-dark"><i class="fa fa-paint-brush" aria-hidden="true"></i></button> 
+                </div> <!--close brush1-->
+                <div id="brush2" class="col-lg-4 col-md-4 col-sm-4">
+                        <button type="button" class="btn btn-dark"><i class="fa fa-paint-brush" aria-hidden="true"></i></button> 
+                </div> <!--close brush2-->
+                <div id="brush3" class="col-lg-4 col-md-4 col-sm-4">
+                        <button type="button" class="btn btn-dark"><i class="fa fa-paint-brush" aria-hidden="true"></i></button> 
+                </div> <!--close brush3-->
+            </div> <!--close brush-stroke-->
 
-            <span class="btn btn-info fa fa-paint-brush" id="openFile">Upload</span>
-            <input id="file" type="file" accept=".jpg, .jpeg, .png">
 
-            <a class="btn btn-info" href ="#" id="downLoad" download="image.jpeg">Download</a>
-        </div> <!--close buttons-->
-    </div> <!--close control-board-wrapper-->
+
+
+        </div> <!--close control-board1-->
+    <!--</div> close control-board-wrapper-->
+
+    
 
 
     <div id="canvas-container">
@@ -41,17 +47,7 @@
     </div>
 
 
-    <div id = "control-board-wrapper2" class = "col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="buttons2">
-            <span class="btn btn-info fa fa-square" id="drawing-rectangle">Drawing Rectangle</span>
-            <span class="btn btn-info fa fa-paint-brush" id="drawing-ellipse">Drawing Ellipse</span>
-            <span class="btn btn-info fa fa-paint-brush" id="drawing-polygon">Drawing Polygon</span>
-            <span class="btn btn-info fa fa-paint-brush" id="drawing-line">Drawing Line</span>
-            <span class="btn btn-info fa fa-paint-brush" id="drawing-straightLine">Drawing Straight Line</span>
-        </div>
-    <div>
-
-
+   
 
     <div class="slidecontainer">
         <input type="range" min="1" max="50" value="15" class="slider" id="pixel">
@@ -59,8 +55,9 @@
             <span id="displayVal"></span>
         </p>
     </div>
+    </div>
 
-    <!--<div class="buttons" >
+   <!-- <div class="buttons" >
         <span class="btn btn-info fa fa-square" id="drawing-rectangle">Drawing Rectangle</span>
         <span class="btn btn-info fa fa-paint-brush" id="drawing-line">Drawing Line</span>
         <span class="btn btn-info fa fa-paint-brush" id="drawing-straightLine">Drawing Straight Line</span>
