@@ -76,6 +76,7 @@ function changeColor(e) {
   var imageData = ctx1.getImageData(x, y, 1, 1).data;
   rgbaColor = 'rgba(' + imageData[0] + ',' + imageData[1] + ',' + imageData[2] + ',1)';
   colorLabel.style.backgroundColor = rgbaColor;
+  /*canvasReal.style.backgroundColor= rgbaColor;*/
 }
 
 colorStrip.addEventListener("click", click, false);

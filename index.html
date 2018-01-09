@@ -29,8 +29,8 @@
         </p>
     </div>
 
-    <div class="buttons">
-        <span class="btn btn-primary fa fa-square" id="drawing-rectangle">Drawing Rectangle</span>
+    <div class="buttons" >
+        <span class="btn btn-info fa fa-square" id="drawing-rectangle">Drawing Rectangle</span>
         <span class="btn btn-info fa fa-paint-brush" id="drawing-line">Drawing Line</span>
         <span class="btn btn-info fa fa-paint-brush" id="drawing-straightLine">Drawing Straight Line</span>
         <span class="btn btn-info fa fa-paint-brush" id="drawing-ellipse">Drawing Ellipse</span>
@@ -40,10 +40,12 @@
         <span class="btn btn-info fa fa-paint-brush" id="selectors">Select</span>
         <span class="btn btn-info fa fa-paint-brush" id="clear-all">Clear</span>
         <span class="btn btn-info fa fa-paint-brush" id="eraser">Eraser</span>
-        <button id="background-fill" type="button" class="btn btn-primary">Background</button>
-        <button id="openFile" type="button" class="btn btn-primary">Upload</button>
-        <input id="file" type="file" accept=".png, .jpg, jpeg" />
+        <span class="btn btn-info fa fa-paint-brush" id="background-fill">Background</span>
 
+        <span class="btn btn-info fa fa-paint-brush" id="openFile">Upload</span>
+        <input id="file" type="file" accept=".jpg, .jpeg, .png">
+
+        <a class="btn btn-info" href ="#" id="downLoad" download="image.jpeg">Download</a>
     </div>
 
     <label for="color-input" id="color-label" style="background-color: red"></label>
@@ -99,6 +101,11 @@
         });
         $('#openFile').click(() => {
             currentFunction = new triggerClick();
+        });
+
+        $('#downLoad').on('click', () => {
+        document.getElementById("downLoad").download = "image.jpg";
+        document.getElementById("downLoad").href = document.getElementById("canvas").toDataURL("image/jpeg");
         });
 
         // Control the snapshot

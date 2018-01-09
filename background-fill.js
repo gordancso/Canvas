@@ -9,14 +9,12 @@ class backgroundFill extends PaintFunction{
         
     }
     
-    onMouseDown(coord,event){
+   /* onMouseDown(coord,event){
         this.contextReal.fillStyle = rgbaColor;
-        //backGC = rgbaColor;
-        //this.contextDraft.fillStyle = rgbaColor;
         this.origX = coord[0];
         this.origY = coord[0];
 
-    }
+    }*/
 
    
     onMouseLeave(){}
