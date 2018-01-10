@@ -26,7 +26,7 @@
   <div id="control-panel">
     <div class="box1">
       <div class="icon">
-        <a href="#" class="btn btn-sq-xs" id="drawing-line"">
+        <a href="#" class="btn btn-sq-xs" id="drawing-line">
           <i class="fa fa-pencil fa-2x"></i>
         </a>
         <a href="#" class="btn btn-sq-xs" id="linepattern-brush">
@@ -59,21 +59,21 @@
         <a href="#" class="btn btn-sq-xs" id="previous">
           <i class="fa fa-arrow-left fa-2x"></i>
         </a>
-        <a href="#" class="btn btn-sq-xs ">
-          <i class="fa fa-trash-o fa-2x" id="clear-all"></i>
+        <a href="#" class="btn btn-sq-xs" id="clear-all">
+          <i class="fa fa-trash-o fa-2x"></i>
         </a>
-        <a href="#" class="btn btn-sq-xs ">
-          <i class="fa fa-arrow-right fa-2x" id="next"></i>
+        <a href="#" class="btn btn-sq-xs" id="next">
+          <i class="fa fa-arrow-right fa-2x"></i>
         </a>
 
-        <a href="#" class="btn btn-sq-xs ">
-          <i class="fa fa-bitbucket fa-2x" id="background-fill"></i>
+        <a href="#" class="btn btn-sq-xs" id="background-fill">
+          <i class="fa fa-bitbucket fa-2x"></i>
         </a>
-        <a href="#" class="btn btn-sq-xs " id="downLoad" download="image.jpeg">
+        <a href="#" class="btn btn-sq-xs" id="downLoad" download="image.jpeg">
           <i class="fa fa-download fa-2x"></i>
         </a>
-        <a href="#" class="btn btn-sq-xs ">
-          <i class="fa fa-picture-o fa-2x" id="openFile"></i>
+        <a href="#" class="btn btn-sq-xs" id="openFile">
+          <i class="fa fa-picture-o fa-2x"></i>
         </a>
         <input id="file" type="file" accept=".jpg, .jpeg, .png" />
       </div>
@@ -125,6 +125,8 @@
 
   <script type='text/javascript'>
     let backgroundColortest
+    console.log(backgroundColortest)
+    console.log(rgbaColor)
     // default to be rectangle feature
     currentFunction = new DrawingLine(contextReal, contextDraft);
     $('#drawing-rectangle').click(() => {

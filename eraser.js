@@ -3,12 +3,18 @@ class Eraser extends PaintFunction {
         super();
         this.context = contextReal;
         this.reset();
-        this.context.strokestyle = backgroundColortest
+//        this.context.strokestyle = backgroundColortest
         console.log(backgroundColortest)
+        console.log(rgbaColor)
     }
 
     onMouseDown(coord, event) {
-        this.context.strokeStyle = backgroundColortest;
+//      if (backgroundColortest == undefined){
+//        this.context.strokeStyle = '#FFFFFF';
+//      } else {
+//        this.context.strokeStyle = backgroundColortest;
+//      }
+        this.context.strokeStyle = "rgba(255,0,0,0.5)";
         this.context.lineJoin = this.context.lineCap = "round";
         this.context.lineWidth = slider.value;
         this.context.beginPath();
@@ -32,10 +38,10 @@ class Eraser extends PaintFunction {
     onMouseEnter() { }
 
     draw(x, y) {
-//        this.context.globalCompositeOperation = "destination-out";
+        this.context.globalCompositeOperation = "destination-out";
         this.context.lineTo(x, y);
         this.context.stroke();
-//        this.context.globalCompositeOperation = "source-over";
+        this.context.globalCompositeOperation = "source-over";
     }
 
     reset(){
