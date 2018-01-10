@@ -22,7 +22,6 @@ $(document).ready(function (){
         $('#canvas-real').css({'left':'200px', 'top':'0px'});
         $('#canvas-draft').css({'left':'200px', 'top':'0px'});
     }
-
 })
 
 $(window).resize(function() {

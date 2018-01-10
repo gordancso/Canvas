@@ -65,15 +65,11 @@
         <a href="#" class="btn btn-sq-xs" id="next">
           <i class="fa fa-arrow-right fa-2x"></i>
         </a>
-
-        <a href="#" class="btn btn-sq-xs" id="background-fill">
-          <i class="fa fa-bitbucket fa-2x"></i>
-        </a>
-        <a href="#" class="btn btn-sq-xs" id="downLoad" download="image.jpeg">
+        <a href="#" class="btn btn-sq-xs " id="downLoad" download="image.jpeg">
           <i class="fa fa-download fa-2x"></i>
         </a>
         <a href="#" class="btn btn-sq-xs" id="openFile">
-          <i class="fa fa-picture-o fa-2x"></i>
+          <i class="fa fa-picture-o fa-2x" ></i>
         </a>
         <input id="file" type="file" accept=".jpg, .jpeg, .png" />
       </div>
@@ -119,14 +115,8 @@
   <script type='text/javascript' src="selectors.js"></script>
   <script type='text/javascript' src="upload-download.js"></script>
 
-
-
-
-
   <script type='text/javascript'>
     let backgroundColortest
-    console.log(backgroundColortest)
-    console.log(rgbaColor)
     // default to be rectangle feature
     currentFunction = new DrawingLine(contextReal, contextDraft);
     $('#drawing-rectangle').click(() => {
@@ -149,13 +139,6 @@
     });
     $('#selectors').click(() => {
       currentFunction = new Selectors(contextReal, contextDraft);
-    });
-    $('#background-fill').click(() => {
-      //$('#canvas-real').css('backgroundColor', rgbaColor);
-      contextReal.fillStyle = rgbaColor;
-      contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
-      backgroundColortest = rgbaColor;
-//      currentFunction = new backgroundFill(contextReal, contextDraft);
     });
     $('#openFile').click(() => {
       new triggerClick();

@@ -3,6 +3,11 @@ class Selectors extends PaintFunction {
     super();
     this.contextReal = contextReal;
     this.contextDraft = contextDraft;
+    this.contextReal.setLineDash([2]);
+    this.contextDraft.setLineDash([2]);
+    this.contextReal.strokeStyle = this.contextDraft.strokeStyle = "#000000";
+    this.contextReal.lineWidth = this.contextDraft.lineWidth = 1;
+    this.contextReal.shadowBlur = this.contextDraft.shadowBlur = 0;
     this.reset();
   }
 
@@ -53,12 +58,12 @@ class Selectors extends PaintFunction {
       this.width = this.finalX - this.origX;
       this.height = this.finalY - this.origY;
     }
-    
+
     this.contextDraft.strokeRect(this.origX, this.origY, this.width, this.height);
     this.previousCoord = coord;
   }
 
-  onMouseLeave(coord, event) { 
+  onMouseLeave(coord, event) {
     this.finished = true;
   }
 
@@ -101,6 +106,7 @@ class Selectors extends PaintFunction {
   }
 
   reset() {
+    this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
     this.firstClick = true;
     this.firstUp = true;
   }
