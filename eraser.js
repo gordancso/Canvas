@@ -3,6 +3,8 @@ class Eraser extends PaintFunction {
         super();
         this.context = contextReal;
         this.reset();
+        this.context.strokestyle = backgroundColortest
+        console.log(backgroundColortest)
     }
 
     onMouseDown(coord, event) {

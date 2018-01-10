@@ -5,6 +5,13 @@ class DrawingRectangle extends PaintFunction {
     this.contextDraft = contextDraft;
     // define initial color
     this.contextReal.fillStyle = this.contextDraft.fillStyle = rgbaColor;
+    this.contextReal.strokeStyle = this.contextDraft.strokeStyle = "#000000";
+    this.contextReal.setLineDash([2]);
+    this.contextDraft.setLineDash([2]);
+    this.contextDraft.beginPath();
+    this.contextReal.shadowBlur = this.contextDraft.shadowBlur = 0;
+    this.contextReal.lineWidth = this.contextDraft.lineWidth = 1;
+
 
     // condition
     this.mousedown = false;
@@ -154,7 +161,7 @@ class DrawingRectangle extends PaintFunction {
     context.strokeStyle = box.lineWidth;
     context.fillStyle = box.color;
     context.rect(box.x1, box.y1, (box.x2 - box.x1), (box.y2 - box.y1));
-    context.setLineDash([3]);
+    context.setLineDash([2]);
     context.stroke();
 
     //    Control points
@@ -251,6 +258,15 @@ class DrawingRectangle extends PaintFunction {
     this.tmpBox = null;
     this.lineOffset = 4;
     this.anchrSize = 4;
+
+    // reset all to default
+    this.contextReal.fillStyle = this.contextDraft.fillStyle = rgbaColor;
+    this.contextReal.strokeStyle = this.contextDraft.strokeStyle = "#000000";
+    this.contextReal.setLineDash([2]);
+    this.contextDraft.setLineDash([2]);
+    this.contextDraft.beginPath();
+    this.contextReal.shadowBlur = this.contextDraft.shadowBlur = 0;
+    this.contextReal.lineWidth = this.contextDraft.lineWidth = 1;
     this.contextDraft.beginPath();
   }
 }
