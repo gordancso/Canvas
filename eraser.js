@@ -3,18 +3,11 @@ class Eraser extends PaintFunction {
         super();
         this.context = contextReal;
         this.reset();
-//        this.context.strokestyle = backgroundColortest
-        console.log(backgroundColortest)
-        console.log(rgbaColor)
     }
 
     onMouseDown(coord, event) {
-//      if (backgroundColortest == undefined){
-//        this.context.strokeStyle = '#FFFFFF';
-//      } else {
-//        this.context.strokeStyle = backgroundColortest;
-//      }
-        this.context.strokeStyle = "rgba(255,0,0,0.5)";
+        this.context.shadowBlur = 0;
+        this.context.strokeStyle = "rgba(0,0,0,0.5)";
         this.context.lineJoin = this.context.lineCap = "round";
         this.context.lineWidth = slider.noUiSlider.get();
         this.context.beginPath();
