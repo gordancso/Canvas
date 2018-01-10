@@ -16,7 +16,7 @@ class Eraser extends PaintFunction {
 //      }
         this.context.strokeStyle = "rgba(255,0,0,0.5)";
         this.context.lineJoin = this.context.lineCap = "round";
-        this.context.lineWidth = slider.value;
+        this.context.lineWidth = slider.noUiSlider.get();
         this.context.beginPath();
         this.context.moveTo(coord[0],coord[1]);
     }
