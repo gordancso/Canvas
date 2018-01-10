@@ -10,9 +10,7 @@ let index = 0;
 snapshot[0] = contextReal.getImageData(0, 0, canvasReal.width, canvasReal.height);
 
 class PaintFunction {
-  constructor() {
-    contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height)
-  }
+  constructor() {}
   onMouseDown() {}
   onDragging() {}
   onMouseMove() {}
@@ -29,7 +27,6 @@ class PaintFunction {
 
 function desktopMode() {
   $('#canvas-draft').mousedown(function(e) {
-    
     let mouseX = e.pageX - this.offsetLeft;
     let mouseY = e.pageY - this.offsetTop;
     currentFunction.onMouseDown([mouseX, mouseY], e);

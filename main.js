@@ -22,9 +22,6 @@ $(document).ready(function (){
         $('#canvas-real').css({'left':'200px', 'top':'0px'});
         $('#canvas-draft').css({'left':'200px', 'top':'0px'});
     }
-
-    contextReal.fillStyle = '#fff';
-    contextReal.fillRect(0,0,canvasReal.width,canvasReal.height);
 })
 
 $(window).resize(function() {

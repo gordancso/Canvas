@@ -5,12 +5,8 @@ class backgroundFill extends PaintFunction {
         this.contextReal = contextReal;
     }
 
-    onMouseDown(coord, event) {
-    }
+    onMouseDown(coord, event) {}
 
-    onMouseLeave() { }
-    onMouseEnter() {
-        this.contextReal.fillStyle = rgbaColor;
-        this.contextReal.fillRect(0, 0, canvasReal.width, canvasReal.height);
-    }
+    onMouseLeave() {}
+    onMouseEnter() {}
 }
