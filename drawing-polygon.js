@@ -3,6 +3,7 @@ class DrawingPolygon extends PaintFunction {
     super();
     this.contextReal = contextReal;
     this.contextDraft = contextDraft;
+    this.lineStyleReset()
     this.reset();
   }
 
@@ -32,13 +33,13 @@ class DrawingPolygon extends PaintFunction {
     // store all the anchor points
     this.xArr.push(coord[0]);
     this.yArr.push(coord[1]);
-  
+
     // redraw in real canvas
     if (this.firstClick) {
       this.firstClick = false;
       this.draft = true;
       this.lineStyleReset();
-    } 
+    }
     else if (Math.abs(coord[0] - this.xArr[0]) < 20 && Math.abs(coord[1] - this.yArr[0]) < 20) {
       this.xArr.pop(coord[0]); // remove the final temporary point
       this.yArr.pop(coord[1]);
