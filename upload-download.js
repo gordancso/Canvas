@@ -1,7 +1,6 @@
 
 function triggerClick (){
     document.getElementById('file').click();
-
 }
 
 document.getElementById('file').addEventListener('change',function(e){
@@ -41,6 +40,8 @@ document.getElementById('file').addEventListener('change',function(e){
 
         this.contextReal.drawImage(image, 0, 0, newImageWidth, newImageHeight);
         URL.revokeObjectURL(temp);
+        snapshot.length = index + 1;
+        snapshot[++index] = contextReal.getImageData(0, 0, canvasReal.width, canvasReal.height);
     });
 });
 

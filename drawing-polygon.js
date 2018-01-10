@@ -32,17 +32,14 @@ class DrawingPolygon extends PaintFunction {
     // store all the anchor points
     this.xArr.push(coord[0]);
     this.yArr.push(coord[1]);
-    console.log(window.screen.availWidth)
-
-
-
-    console.log(this.firstClick)
+  
     // redraw in real canvas
     if (this.firstClick) {
       this.firstClick = false;
       this.draft = true;
       this.lineStyleReset();
-    } else if (Math.abs(coord[0] - this.xArr[0]) < 20 && Math.abs(coord[1] - this.yArr[0]) < 20) {
+    } 
+    else if (Math.abs(coord[0] - this.xArr[0]) < 20 && Math.abs(coord[1] - this.yArr[0]) < 20) {
       this.xArr.pop(coord[0]); // remove the final temporary point
       this.yArr.pop(coord[1]);
       this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
@@ -75,7 +72,7 @@ class DrawingPolygon extends PaintFunction {
   }
 
   lineStyleReset(){
-    this.contextReal.strokeStyle = this.contextDraft.strokeStyle = rgbaColor;
+    this.contextReal.strokeStyle = this.contextDraft.strokeStyle = '#000';
     this.contextReal.lineJoin = this.contextDraft.lineJoin = "round";
     this.contextReal.lineWidth = this.contextDraft.lineWidth = 2;
     this.contextReal.shadowBlur = this.contextDraft.shadowBlur = 0;

@@ -98,7 +98,7 @@ class DrawingStraightLine extends PaintFunction {
     // create control points in draft canvas
     createCP(point) {
         this.contextDraft.beginPath();
-        this.contextDraft.arc(point[0], point[1], 3, 0, 2 * Math.PI);
+        this.contextDraft.arc(point[0], point[1], slider.noUiSlider.get(), 0, 2 * Math.PI);
         this.contextDraft.fillStyle = "#000";
         this.contextDraft.fill();
     }
@@ -170,13 +170,12 @@ class DrawingStraightLine extends PaintFunction {
         this.contextReal.lineWidth = this.contextDraft.lineWidth = slider.noUiSlider.get();
     }
 
-    lineStyleReset(){
+    lineStyleReset() {
         this.contextReal.strokeStyle = this.contextDraft.strokeStyle = rgbaColor;
         this.contextReal.lineJoin = this.contextDraft.lineJoin = "round";
         this.contextReal.lineWidth = this.contextDraft.lineWidth = slider.noUiSlider.get();
         this.contextReal.shadowBlur = this.contextDraft.shadowBlur = 0;
         this.contextReal.setLineDash([]);
         this.contextDraft.setLineDash([]);
-        
     }
 }
