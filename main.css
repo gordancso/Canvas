@@ -58,7 +58,7 @@ body{
 
 #canvas-container {
   position: absolute;
-}
+  margin-left: 260px;
 
 /* -------------Color picker------------- */
 
