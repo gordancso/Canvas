@@ -3,11 +3,6 @@ class DrawingStraightLine extends PaintFunction {
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
-        this.contextReal.setLineDash([]);
-        this.contextDraft.setLineDash([]);
-        this.contextReal.fillStyle = this.contextDraft.fillStyle = rgbaColor;
-        this.contextReal.lineJoin = this.contextDraft.lineJoin = "round";
-        this.contextReal.lineWidth = this.contextDraft.lineWidth = slider.value;
         this.reset();
     }
 
@@ -18,6 +13,7 @@ class DrawingStraightLine extends PaintFunction {
             this.firstClick = false;
             this.draft = true;
             this.createCP(this.startpoint); // create first control point
+            this.lineStyleReset();
         }
 
         // check if users click the control or select the line
@@ -102,11 +98,9 @@ class DrawingStraightLine extends PaintFunction {
     // create control points in draft canvas
     createCP(point) {
         this.contextDraft.beginPath();
-        this.contextDraft.arc(point[0], point[1], 5, 0, 2 * Math.PI);
+        this.contextDraft.arc(point[0], point[1], 3, 0, 2 * Math.PI);
         this.contextDraft.fillStyle = "#000";
         this.contextDraft.fill();
-        this.contextDraft.strokeStyle = "#000";
-        this.contextDraft.stroke();
     }
 
     // check if selecting the control points
@@ -158,7 +152,6 @@ class DrawingStraightLine extends PaintFunction {
 
     // draw the line with start point and end point
     drawLine(ctx, start, end) {
-        ctx.strokeStyle = rgbaColor;
         ctx.beginPath();
         ctx.moveTo(start[0], start[1]);
         ctx.lineTo(end[0], end[1]);
@@ -174,5 +167,16 @@ class DrawingStraightLine extends PaintFunction {
         this.firstClick = true;
         this.clickCP = { startpoint: false, endpoint: false };
         this.clickLine = false;
+        this.contextReal.lineWidth = this.contextDraft.lineWidth = slider.noUiSlider.get();
+    }
+
+    lineStyleReset(){
+        this.contextReal.strokeStyle = this.contextDraft.strokeStyle = rgbaColor;
+        this.contextReal.lineJoin = this.contextDraft.lineJoin = "round";
+        this.contextReal.lineWidth = this.contextDraft.lineWidth = slider.noUiSlider.get();
+        this.contextReal.shadowBlur = this.contextDraft.shadowBlur = 0;
+        this.contextReal.setLineDash([]);
+        this.contextDraft.setLineDash([]);
+        
     }
 }

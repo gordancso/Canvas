@@ -6,7 +6,7 @@ class DrawingEllipse extends PaintFunction {
         this.contextReal.setLineDash([]);
         this.contextDraft.setLineDash([]);
         this.contextReal.lineJoin = this.contextDraft.lineJoin = "round";
-        this.contextReal.lineWidth = this.contextDraft.lineWidth = slider.value;
+        this.contextReal.lineWidth = this.contextDraft.lineWidth = slider.noUiSlider.get();
         this.reset();
     }
 
@@ -17,6 +17,7 @@ class DrawingEllipse extends PaintFunction {
             this.firstClick = false;
             this.createCP(coord[0], coord[1], 7);
             this.draft = true;
+            this.lineStyleReset();
         }
 
         // check if the users click the control points
@@ -75,8 +76,8 @@ class DrawingEllipse extends PaintFunction {
 
     onMouseLeave() { }
 
-    onMouseEnter(coord, event) { 
-        
+    onMouseEnter(coord, event) {
+
     }
 
     onDoubleClick(coord, event) {
@@ -98,11 +99,12 @@ class DrawingEllipse extends PaintFunction {
         ctx.ellipse(this.xcenter, this.ycenter, this.radiusX, this.radiusY, 0, 0, 2 * Math.PI);
         ctx.fillStyle = rgbaColor;
         ctx.fill();
-        ctx.stroke();
+        
     }
 
     drawRect(ctx) {
         ctx.beginPath();
+        ctx.strokeStyle = '#000';
         ctx.strokeRect(this.xcenter - this.radiusX, this.ycenter - this.radiusY, this.radiusX * 2, this.radiusY * 2);
         ctx.closePath();
     }
@@ -110,7 +112,8 @@ class DrawingEllipse extends PaintFunction {
     // create control points in draft canvas
     createCP(x, y, name) {
         this.contextDraft.beginPath();
-        this.contextDraft.arc(x, y, 5, 0, 2 * Math.PI);
+        this.contextDraft.arc(x, y, 3, 0, 2 * Math.PI);
+        this.contextDraft.lineWidth = 1;
         this.contextDraft.fillStyle = "#000";
         this.contextDraft.fill();
         this.contextDraft.strokeStyle = "#000";
@@ -161,5 +164,15 @@ class DrawingEllipse extends PaintFunction {
         this.clickShape = false;
         this.selected = false; // Determine the clicking of control point
         this.movement = false;
+    }
+
+    lineStyleReset() {
+        this.contextReal.strokeStyle = this.contextDraft.strokeStyle = rgbaColor;
+        this.contextReal.fillStyle = this.contextDraft.fillStyle = rgbaColor;
+        this.contextReal.lineJoin = this.contextDraft.lineJoin = "round";
+        this.contextReal.lineWidth = this.contextDraft.lineWidth = 1;
+        this.contextReal.shadowBlur = this.contextDraft.shadowBlur = 0;
+        this.contextReal.setLineDash([]);
+        this.contextDraft.setLineDash([]);
     }
 }

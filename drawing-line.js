@@ -2,15 +2,11 @@ class DrawingLine extends PaintFunction {
     constructor(contextReal) {
         super();
         this.context = contextReal;
-        this.context.strokeStyle = rgbaColor;
-        this.context.lineJoin = "round";
-        this.context.lineWidth = slider.value;
+        this.lineStyleReset();
     }
 
     onMouseDown(coord, event) {
-        this.context.strokeStyle = rgbaColor;
-        this.context.lineJoin = this.context.lineCap = "round";
-        this.context.lineWidth = slider.value;
+        this.lineStyleReset();
         this.context.beginPath();
         this.context.moveTo(coord[0], coord[1]);
     }
@@ -23,6 +19,7 @@ class DrawingLine extends PaintFunction {
     onMouseUp(coord, event) {
         this.draft = false;
         this.capture();
+        this.context.beginPath();
     }
     onMouseLeave() { }
     onMouseEnter() { }
@@ -33,20 +30,27 @@ class DrawingLine extends PaintFunction {
         this.context.closePath();
         this.context.stroke();
     }
+
+    lineStyleReset(){
+        this.context.strokeStyle = rgbaColor;
+        this.context.shadowBlur = 0;
+        this.context.setLineDash([]);
+        this.context.lineJoin = "round";
+        this.context.lineWidth = slider.noUiSlider.get();
+    }
+    
+    reset(){}
 }
 
 class LinePatternBrush extends PaintFunction {
     constructor(contextReal) {
         super();
         this.context = contextReal;
-        this.context.strokeStyle = rgbaColor;
-        this.context.lineJoin = "round";
+        this.lineStyleReset();
     }
 
     onMouseDown(coord, event) {
-        this.context.strokeStyle = this.getPattern();
-        this.context.lineJoin = this.context.lineCap = "round";
-        this.context.lineWidth = slider.value;
+        this.lineStyleReset();
         this.context.beginPath();
         this.context.moveTo(coord[0], coord[1]);
     }
@@ -84,6 +88,16 @@ class LinePatternBrush extends PaintFunction {
         ctx.stroke();
         return ctx.createPattern(patternCanvas, 'repeat');
     }
+
+    lineStyleReset(){
+        this.context.strokeStyle = this.getPattern();
+        this.context.shadowBlur = 0;
+        this.context.setLineDash([]);
+        this.context.lineJoin = this.context.lineCap = "round";
+        this.context.lineWidth = slider.noUiSlider.get();
+    }
+
+    reset(){}
 }
 
 class LineShadowBrush extends PaintFunction {
@@ -91,16 +105,12 @@ class LineShadowBrush extends PaintFunction {
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
-        
-        this.contextReal.lineJoin = this.contextReal.lineCap = this.contextDraft.lineJoin = this.contextDraft.lineCap = 'round';
-        
-        this.contextReal.shadowColor = this.contextDraft.shadowColor = 'rgb(0, 0, 0)';
+        this.lineStyleReset();
         this.reset();
     }
 
     onMouseDown(coord, event) {
-        this.contextReal.lineWidth = this.contextDraft.lineWidth = slider.value;
-        this.contextReal.shadowBlur = this.contextDraft.shadowBlur = blur.value;
+        this.lineStyleReset();
         this.pointArr.push({ x: coord[0], y: coord[1] })
     }
 
@@ -110,7 +120,7 @@ class LineShadowBrush extends PaintFunction {
     }
 
     onMouseMove() { }
-    
+
     onMouseUp(coord, event) {
         this.draw(this.contextReal);
         this.draft = false;
@@ -122,7 +132,6 @@ class LineShadowBrush extends PaintFunction {
 
     draw(ctx) {
         this.contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
-        ctx.strokeStyle = rgbaColor;
         ctx.beginPath();
         ctx.moveTo(this.pointArr[0].x, this.pointArr[0].y);
         for (let i = 1; i < this.pointArr.length; i++)
@@ -132,5 +141,14 @@ class LineShadowBrush extends PaintFunction {
 
     reset() {
         this.pointArr = [];
+    }
+
+    lineStyleReset(){
+        this.contextReal.strokeStyle = this.contextDraft.strokeStyle = rgbaColor;
+        this.contextReal.shadowColor = this.contextDraft.shadowColor = 'rgb(0, 0, 0)';
+        this.contextReal.lineWidth = this.contextDraft.lineWidth = slider.noUiSlider.get();
+        this.contextReal.shadowBlur = this.contextDraft.shadowBlur = 15;
+        this.contextReal.setLineDash([]);
+        this.contextReal.lineJoin = this.contextReal.lineCap = this.contextDraft.lineJoin = this.contextDraft.lineCap = 'round';
     }
 }

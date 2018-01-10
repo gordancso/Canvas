@@ -20,31 +20,33 @@ class DrawingRectangle extends PaintFunction {
     // temp box to store coord.
     this.tmpBox = null;
 
-    this.lineOffset = 4;
+    this.lineOffset = 20;
     this.anchrSize = 4;
   }
 
   onMouseDown(coord, event) {
     // dummy store for mousedown
     this.mousedown = true;
-    this.clickedArea = this.findCurrentArea(event.offsetX, event.offsetY)
-    this.x1 = event.offsetX;
-    this.y1 = event.offsetY;
-    this.x2 = event.offsetX;
-    this.y2 = event.offsetY;
+    this.clickedArea = this.findCurrentArea(coord[0], coord[1])
+    this.x1 = coord[0];
+    this.y1 = coord[1];
+    this.x2 = coord[0];
+    this.y2 = coord[1];
+
+    console.log(this.x1,this.y1)
   }
 
   onMouseMove(coord, event) {
     if (this.mousedown && this.clickedArea.box == -1) {
-      this.x2 = event.offsetX;
-      this.y2 = event.offsetY;
+      this.x2 = coord[0];
+      this.y2 = coord[1];
       this.redraw();
       this.draft = true;
     }
     //    rectangle created, resize based on the clicked coordinate
     else if (this.mousedown && this.clickedArea.box != -1) {
-      this.x2 = event.offsetX;
-      this.y2 = event.offsetY;
+      this.x2 = coord[0];
+      this.y2 = coord[1];
       this.xOffset = this.x2 - this.x1;
       this.yOffset = this.y2 - this.y1;
       this.x1 = this.x2;
@@ -122,7 +124,7 @@ class DrawingRectangle extends PaintFunction {
     this.draft = false;
     this.capture();
     this.reset();
-    
+
   }
 
   //function

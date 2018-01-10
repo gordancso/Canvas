@@ -6,7 +6,7 @@ class Eraser extends PaintFunction {
     }
 
     onMouseDown(coord, event) {
-        this.context.strokeStyle = "rgba(0,0,0,1)";
+        this.context.strokeStyle = backgroundColortest;
         this.context.lineJoin = this.context.lineCap = "round";
         this.context.lineWidth = slider.value;
         this.context.beginPath();
@@ -19,21 +19,21 @@ class Eraser extends PaintFunction {
     }
 
     onMouseMove() { }
-    onMouseUp(coord, event) { 
+    onMouseUp(coord, event) {
         if (this.earsing){
-            this.capture(); 
+            this.capture();
             this.earsing = false;
         }
-          
+
     }
     onMouseLeave() { }
     onMouseEnter() { }
 
     draw(x, y) {
-        this.context.globalCompositeOperation = "destination-out";
+//        this.context.globalCompositeOperation = "destination-out";
         this.context.lineTo(x, y);
         this.context.stroke();
-        this.context.globalCompositeOperation = "source-over";
+//        this.context.globalCompositeOperation = "source-over";
     }
 
     reset(){

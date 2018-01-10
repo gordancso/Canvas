@@ -1,45 +1,62 @@
-*{
+* {
   padding: 0;
   margin: 0;
 }
 
-#control-board-wrapper {
-  width: 240px;
-  height: 600px;
-  border: 1px solid orange;
+body{
+    overflow:hidden;
+}
+
+/* ------------control-panel styling------------- */
+
+#control-panel {
+  width: 200px;
+  height: 100vh;
+  border: 1px solid black;
   position: absolute;
-
 }
 
-span {
-  width: 60px;
-  height: 60px;
-  margin: 2px;
- 
+.icon{
+  text-align: center;
 }
 
-#file {
-  visibility: hidden;
+.icon #file {
+  display: none;
 }
 
-a {
-  width: 60px;
-  height: 60px;
+#control-panel ul {
+	list-style: none;
+}
+
+
+.btn-sq-xs {
+  width: 48px;
+  height: 48px;
+  padding: 6px;
+}
+
+.sliderPx {
+  width: 150px;
+  margin: 20 auto;
+}
+
+.sliderPx p {
+  text-align: center;
+  margin: 5px
 }
 
 /* ------------canvas styling------------- */
 
-.canvas{
-    border:1px black dotted;
-    position:absolute;
+.canvas {
+  border: 1px black dotted;
+  position: absolute;
 }
 
-#canvas-draft{
-    background-color: transparent;
+#canvas-draft {
+  background-color: transparent;
 }
 
-#canvas-container{
-    height:500px;
+#canvas-container {
   position: absolute;
   margin-left: 260px;
 
@@ -49,6 +66,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
 h2 {
   background-color: #dbdbdb;
   margin: 0;
@@ -56,28 +74,56 @@ h2 {
   padding: 10px;
   font-family: 'Open Sans';
 }
+
+
 #color-input {
   display: none;
+
 }
+
 #color-label {
-  margin-left: 15px;
-  position: absolute;
+  margin-left: 75px;
   height: 30px;
   width: 50px;
 }
-#color-input:checked ~ #color-picker {
+
+#color-input:checked~#color-picker {
   opacity: 1;
 }
+
 #color-picker {
-  position: absolute;
-  left: 70px;
+  position: relative;
+  margin: auto;
   background-color: white;
-  height: 160px;
-  width: 200px;
+  height: 145px;
+  width: 140px;
   border: solid 1px #ccc;
   opacity: 0;
   padding: 5px;
 }
+
 canvas:hover {
   cursor: crosshair;
+}
+
+.box1, .box2{
+  width: 100%;
+  display: inline-block;
+}
+
+@media (max-width: 576px){
+  .sliderPx{
+    margin: 0;
+    margin-left: 30px;
+    display: inline-block;
+  }
+  .box1{
+    width:60%;
+  }
+  .box2{
+    position: fixed;
+    right: 50px;
+    top: 15px;
+    width: 30%;
+  }
 }
