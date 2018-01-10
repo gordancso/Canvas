@@ -99,7 +99,6 @@ class DrawingEllipse extends PaintFunction {
         ctx.ellipse(this.xcenter, this.ycenter, this.radiusX, this.radiusY, 0, 0, 2 * Math.PI);
         ctx.fillStyle = rgbaColor;
         ctx.fill();
-        
     }
 
     drawRect(ctx) {
