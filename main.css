@@ -41,7 +41,7 @@ a {
 #canvas-container{
     height:500px;
   position: absolute;
-}
+  margin-left: 260px;
 
 /* -------------Color picker------------- */
 
